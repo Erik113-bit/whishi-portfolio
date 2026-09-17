@@ -500,8 +500,8 @@ footer p {
 @media (max-width: 768px) {
 
     html {
-        scroll-behavior: auto;
-        scroll-snap-type: none;
+        scroll-behavior: smooth;
+        scroll-snap-type: y mandatory;
     }
 
     body {
@@ -514,13 +514,12 @@ footer p {
        ========================= */
 
     .header {
-        height: 65px;
-        padding: 0 20px;
-        z-index: 1000;
+        height: 70px;
+        padding: 0 24px;
     }
 
     .logo {
-        font-size: 22px;
+        font-size: 25px;
     }
 
     .nav {
@@ -545,7 +544,10 @@ footer p {
 
         box-sizing: border-box;
 
-        padding: 100px 22px 60px;
+        padding: 100px 28px 70px;
+
+        scroll-snap-align: start;
+        scroll-snap-stop: always;
 
         display: flex;
         flex-direction: column;
@@ -567,12 +569,12 @@ footer p {
 
         text-align: center;
 
-        gap: 30px;
+        gap: 38px;
     }
 
     .hero-image {
-        width: min(65vw, 220px);
-        height: min(65vw, 220px);
+        width: 220px;
+        height: 220px;
 
         flex-shrink: 0;
 
@@ -584,49 +586,44 @@ footer p {
         height: 100%;
 
         object-fit: cover;
-
         display: block;
     }
 
     .hero-content {
         width: 100%;
-        max-width: 420px;
+        max-width: 500px;
     }
 
     .small-title {
-        font-size: 12px;
+        font-size: 15px;
     }
 
     .hero h1 {
-        font-size: clamp(48px, 15vw, 70px);
+        font-size: 68px;
         line-height: 1;
 
-        margin: 10px 0 18px;
+        margin: 12px 0 20px;
     }
 
     .description {
         width: 100%;
-        max-width: 360px;
+        max-width: 410px;
 
         margin: 0 auto;
 
-        font-size: 14px;
+        font-size: 17px;
         line-height: 1.7;
 
-        word-wrap: break-word;
         overflow-wrap: break-word;
     }
 
     .buttons {
-        margin-top: 25px;
+        margin-top: 30px;
     }
 
     .button {
-        display: inline-block;
-
-        padding: 13px 24px;
-
-        font-size: 14px;
+        padding: 15px 28px;
+        font-size: 15px;
     }
 
 
@@ -638,15 +635,13 @@ footer p {
         position: absolute;
 
         top: 85px;
-        left: 22px;
+        left: 28px;
 
-        width: calc(100% - 44px);
-
-        pointer-events: none;
+        width: calc(100% - 56px);
     }
 
     .section-title span {
-        font-size: 10px;
+        font-size: 12px;
         letter-spacing: 3px;
     }
 
@@ -658,6 +653,7 @@ footer p {
     .about-content {
         width: 100%;
         max-width: 600px;
+
         margin: 0 auto;
     }
 
@@ -669,10 +665,11 @@ footer p {
     .skills-header h2,
     .contact-text h2,
     .channel-content h2 {
-        font-size: clamp(28px, 8vw, 38px);
+
+        font-size: 38px;
         line-height: 1.15;
 
-        margin-top: 10px;
+        margin-top: 12px;
 
         overflow-wrap: break-word;
     }
@@ -680,12 +677,12 @@ footer p {
     .skills {
         width: 100%;
 
-        margin-top: 28px;
+        margin-top: 35px;
 
         display: flex;
         flex-direction: column;
 
-        gap: 20px;
+        gap: 24px;
     }
 
     .skill {
@@ -693,24 +690,22 @@ footer p {
 
         box-sizing: border-box;
 
-        padding-bottom: 15px;
+        padding-bottom: 18px;
     }
 
     .skill strong {
         display: block;
 
-        font-size: 14px;
+        font-size: 16px;
         line-height: 1.4;
-
-        overflow-wrap: break-word;
     }
 
     .skill span {
         display: block;
 
-        margin-top: 6px;
+        margin-top: 8px;
 
-        font-size: 13px;
+        font-size: 15px;
         line-height: 1.6;
 
         overflow-wrap: break-word;
@@ -729,9 +724,9 @@ footer p {
         display: grid;
         grid-template-columns: repeat(2, minmax(0, 1fr));
 
-        gap: 10px;
+        gap: 12px;
 
-        margin-top: 28px;
+        margin-top: 32px;
     }
 
     .about-card div {
@@ -739,13 +734,13 @@ footer p {
 
         box-sizing: border-box;
 
-        padding: 14px;
+        padding: 17px;
     }
 
     .about-card span {
         display: block;
 
-        font-size: 10px;
+        font-size: 12px;
         line-height: 1.4;
 
         overflow-wrap: break-word;
@@ -754,9 +749,9 @@ footer p {
     .about-card strong {
         display: block;
 
-        margin-top: 5px;
+        margin-top: 7px;
 
-        font-size: 13px;
+        font-size: 15px;
         line-height: 1.4;
 
         overflow-wrap: break-word;
@@ -777,18 +772,19 @@ footer p {
         display: grid;
         grid-template-columns: 1fr;
 
-        gap: 12px;
+        gap: 16px;
 
-        margin-top: 28px;
+        margin-top: 35px;
     }
 
     .skill-card {
         width: 100%;
-        min-height: 0;
+
+        min-height: 145px;
 
         box-sizing: border-box;
 
-        padding: 20px;
+        padding: 23px;
     }
 
     .skill-info {
@@ -796,16 +792,16 @@ footer p {
     }
 
     .skill-info h3 {
-        font-size: 20px;
+        font-size: 23px;
         line-height: 1.2;
 
         overflow-wrap: break-word;
     }
 
     .skill-info p {
-        margin-top: 8px;
+        margin-top: 10px;
 
-        font-size: 13px;
+        font-size: 15px;
         line-height: 1.6;
 
         overflow-wrap: break-word;
@@ -828,9 +824,9 @@ footer p {
     }
 
     .contact-text > p:not(.small-title) {
-        margin-top: 15px;
+        margin-top: 18px;
 
-        font-size: 14px;
+        font-size: 16px;
         line-height: 1.7;
 
         overflow-wrap: break-word;
@@ -842,9 +838,9 @@ footer p {
         display: flex;
         flex-direction: column;
 
-        gap: 10px;
+        gap: 12px;
 
-        margin-top: 25px;
+        margin-top: 30px;
     }
 
     .contact-links a {
@@ -852,7 +848,9 @@ footer p {
 
         box-sizing: border-box;
 
-        padding: 14px 16px;
+        padding: 16px 18px;
+
+        font-size: 15px;
 
         text-align: center;
 
@@ -872,9 +870,9 @@ footer p {
     }
 
     .channel-content > p:not(.small-title) {
-        margin-top: 15px;
+        margin-top: 18px;
 
-        font-size: 14px;
+        font-size: 16px;
         line-height: 1.7;
 
         overflow-wrap: break-word;
@@ -886,9 +884,9 @@ footer p {
         display: flex;
         flex-direction: column;
 
-        gap: 10px;
+        gap: 12px;
 
-        margin-top: 25px;
+        margin-top: 30px;
     }
 
     .channel-links a {
@@ -896,7 +894,9 @@ footer p {
 
         box-sizing: border-box;
 
-        padding: 14px 16px;
+        padding: 16px 18px;
+
+        font-size: 15px;
 
         text-align: center;
 
@@ -913,7 +913,7 @@ footer p {
 
         box-sizing: border-box;
 
-        padding: 40px 20px;
+        padding: 45px 25px;
 
         text-align: center;
     }
@@ -926,21 +926,32 @@ footer p {
     @media (max-width: 380px) {
 
         .section {
-            padding-left: 18px;
-            padding-right: 18px;
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+
+        .hero-image {
+            width: 190px;
+            height: 190px;
+        }
+
+        .hero h1 {
+            font-size: 58px;
+        }
+
+        .hero {
+            gap: 30px;
+        }
+
+        .about-text h2,
+        .skills-header h2,
+        .contact-text h2,
+        .channel-content h2 {
+            font-size: 34px;
         }
 
         .about-card {
             grid-template-columns: 1fr;
-        }
-
-        .hero-image {
-            width: 170px;
-            height: 170px;
-        }
-
-        .hero h1 {
-            font-size: 48px;
         }
 
     }

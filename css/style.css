@@ -497,10 +497,28 @@ footer p {
 
 /* МОБИЛЬНАЯ ВЕРСИЯ */
 
-@media (max-width: 800px) {
+@media (max-width: 768px) {
+
+    html {
+        scroll-behavior: smooth;
+        scroll-snap-type: y mandatory;
+    }
+
+    body {
+        overflow-x: hidden;
+    }
+
+    /* =========================
+       HEADER
+       ========================= */
 
     .header {
+        height: 70px;
         padding: 0 20px;
+    }
+
+    .logo {
+        font-size: 22px;
     }
 
     .nav {
@@ -511,42 +529,278 @@ footer p {
         display: none;
     }
 
+
+    /* =========================
+       SECTIONS
+       ========================= */
+
     .section {
-        padding: 110px 25px;
+        min-height: 100svh;
+        height: 100svh;
+        padding: 90px 25px 40px;
+
+        scroll-snap-align: start;
+        scroll-snap-stop: always;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
     }
+
+
+    /* =========================
+       HERO
+       ========================= */
 
     .hero {
         flex-direction: column;
-        align-items: flex-start;
-        justify-content: center;
+        text-align: center;
+        gap: 35px;
+    }
 
-        gap: 40px;
+    .hero-image {
+        width: 190px;
+        height: 190px;
+        margin: 0 auto;
+    }
+
+    .hero-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .hero-content {
+        width: 100%;
+    }
+
+    .small-title {
+        font-size: 13px;
     }
 
     .hero h1 {
-        font-size: 48px;
+        font-size: 58px;
+        margin: 10px 0 15px;
     }
 
     .description {
-        font-size: 16px;
+        font-size: 15px;
+        line-height: 1.7;
+        max-width: 340px;
+        margin: 0 auto;
     }
 
-    .about-content,
-    .contact-content {
-        grid-template-columns: 1fr;
+    .buttons {
+        margin-top: 25px;
     }
 
-    .projects-grid {
-        grid-template-columns: 1fr;
+    .button {
+        display: inline-block;
+        padding: 13px 24px;
+    }
+
+
+    /* =========================
+       SECTION TITLE
+       ========================= */
+
+    .section-title {
+        position: absolute;
+        top: 90px;
+        left: 25px;
+    }
+
+    .section-title span {
+        font-size: 11px;
+        letter-spacing: 3px;
+    }
+
+
+    /* =========================
+       ABOUT
+       ========================= */
+
+    .about-content {
+        width: 100%;
     }
 
     .about-text h2,
-    .projects-header h2,
-    .contact-text h2 {
+    .skills-header h2,
+    .contact-text h2,
+    .channel-content h2 {
         font-size: 32px;
+        line-height: 1.15;
     }
 
-    .channel-content h2 {
-    font-size: 32px;
+    .skills {
+        margin-top: 30px;
+        gap: 20px;
+    }
+
+    .skill {
+        padding-bottom: 15px;
+    }
+
+    .skill strong {
+        font-size: 14px;
+    }
+
+    .skill span {
+        font-size: 13px;
+        line-height: 1.5;
+    }
+
+    .about-card {
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+        margin-top: 30px;
+    }
+
+    .about-card div {
+        padding: 15px;
+    }
+
+    .about-card span {
+        font-size: 11px;
+    }
+
+    .about-card strong {
+        font-size: 13px;
+    }
+
+
+    /* =========================
+       SKILLS
+       ========================= */
+
+    .skills-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+        margin-top: 30px;
+    }
+
+    .skill-card {
+        min-height: 130px;
+        padding: 20px;
+    }
+
+    .skill-info h3 {
+        font-size: 20px;
+    }
+
+    .skill-info p {
+        font-size: 13px;
+        line-height: 1.5;
+    }
+
+
+    /* =========================
+       CONTACT
+       ========================= */
+
+    .contact-text {
+        width: 100%;
+    }
+
+    .contact-text > p:not(.small-title) {
+        font-size: 14px;
+        line-height: 1.7;
+        margin-top: 15px;
+    }
+
+    .contact-links {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin-top: 25px;
+    }
+
+    .contact-links a {
+        width: 100%;
+        padding: 14px 16px;
+        text-align: center;
+    }
+
+
+    /* =========================
+       CHANNELS
+       ========================= */
+
+    .channel-content {
+        width: 100%;
+    }
+
+    .channel-content > p:not(.small-title) {
+        font-size: 14px;
+        line-height: 1.7;
+        margin-top: 15px;
+    }
+
+    .channel-links {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin-top: 25px;
+    }
+
+    .channel-links a {
+        width: 100%;
+        padding: 14px 16px;
+        text-align: center;
+    }
+
+
+    /* =========================
+       FOOTER
+       ========================= */
+
+    footer {
+        padding: 40px 20px;
+        text-align: center;
+    }
+
+
+    /* =========================
+       MOBILE ANIMATION
+       ========================= */
+
+    .section > * {
+        animation: mobileAppear 0.8s ease both;
+    }
+
+    .section:nth-child(2) > * {
+        animation-delay: 0.1s;
+    }
+
+    .section:nth-child(3) > * {
+        animation-delay: 0.15s;
+    }
+
+    .section:nth-child(4) > * {
+        animation-delay: 0.2s;
+    }
+
+    .section:nth-child(5) > * {
+        animation-delay: 0.25s;
+    }
+
 }
+
+
+/* =========================
+   ANIMATION
+   ========================= */
+
+@keyframes mobileAppear {
+
+    from {
+        opacity: 0;
+        transform: translateY(35px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
 }

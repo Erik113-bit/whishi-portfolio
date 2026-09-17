@@ -500,21 +500,23 @@ footer p {
 @media (max-width: 768px) {
 
     html {
-        scroll-behavior: smooth;
-        scroll-snap-type: y mandatory;
+        scroll-behavior: auto;
+        scroll-snap-type: none;
     }
 
     body {
         overflow-x: hidden;
     }
 
+
     /* =========================
        HEADER
        ========================= */
 
     .header {
-        height: 70px;
+        height: 65px;
         padding: 0 20px;
+        z-index: 1000;
     }
 
     .logo {
@@ -535,12 +537,15 @@ footer p {
        ========================= */
 
     .section {
-        min-height: 100svh;
-        height: 100svh;
-        padding: 90px 25px 40px;
+        position: relative;
 
-        scroll-snap-align: start;
-        scroll-snap-stop: always;
+        width: 100%;
+        min-height: 100svh;
+        height: auto;
+
+        box-sizing: border-box;
+
+        padding: 100px 22px 60px;
 
         display: flex;
         flex-direction: column;
@@ -553,41 +558,63 @@ footer p {
        ========================= */
 
     .hero {
+        min-height: 100svh;
+
+        display: flex;
         flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
         text-align: center;
-        gap: 35px;
+
+        gap: 30px;
     }
 
     .hero-image {
-        width: 190px;
-        height: 190px;
+        width: min(65vw, 220px);
+        height: min(65vw, 220px);
+
+        flex-shrink: 0;
+
         margin: 0 auto;
     }
 
     .hero-image img {
         width: 100%;
         height: 100%;
+
         object-fit: cover;
+
+        display: block;
     }
 
     .hero-content {
         width: 100%;
+        max-width: 420px;
     }
 
     .small-title {
-        font-size: 13px;
+        font-size: 12px;
     }
 
     .hero h1 {
-        font-size: 58px;
-        margin: 10px 0 15px;
+        font-size: clamp(48px, 15vw, 70px);
+        line-height: 1;
+
+        margin: 10px 0 18px;
     }
 
     .description {
-        font-size: 15px;
-        line-height: 1.7;
-        max-width: 340px;
+        width: 100%;
+        max-width: 360px;
+
         margin: 0 auto;
+
+        font-size: 14px;
+        line-height: 1.7;
+
+        word-wrap: break-word;
+        overflow-wrap: break-word;
     }
 
     .buttons {
@@ -596,7 +623,10 @@ footer p {
 
     .button {
         display: inline-block;
+
         padding: 13px 24px;
+
+        font-size: 14px;
     }
 
 
@@ -606,12 +636,17 @@ footer p {
 
     .section-title {
         position: absolute;
-        top: 90px;
-        left: 25px;
+
+        top: 85px;
+        left: 22px;
+
+        width: calc(100% - 44px);
+
+        pointer-events: none;
     }
 
     .section-title span {
-        font-size: 11px;
+        font-size: 10px;
         letter-spacing: 3px;
     }
 
@@ -622,50 +657,109 @@ footer p {
 
     .about-content {
         width: 100%;
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    .about-text {
+        width: 100%;
     }
 
     .about-text h2,
     .skills-header h2,
     .contact-text h2,
     .channel-content h2 {
-        font-size: 32px;
+        font-size: clamp(28px, 8vw, 38px);
         line-height: 1.15;
+
+        margin-top: 10px;
+
+        overflow-wrap: break-word;
     }
 
     .skills {
-        margin-top: 30px;
+        width: 100%;
+
+        margin-top: 28px;
+
+        display: flex;
+        flex-direction: column;
+
         gap: 20px;
     }
 
     .skill {
+        width: 100%;
+
+        box-sizing: border-box;
+
         padding-bottom: 15px;
     }
 
     .skill strong {
+        display: block;
+
         font-size: 14px;
+        line-height: 1.4;
+
+        overflow-wrap: break-word;
     }
 
     .skill span {
+        display: block;
+
+        margin-top: 6px;
+
         font-size: 13px;
-        line-height: 1.5;
+        line-height: 1.6;
+
+        overflow-wrap: break-word;
     }
 
+
+    /* =========================
+       ABOUT CARD
+       ========================= */
+
     .about-card {
-        grid-template-columns: 1fr 1fr;
-        gap: 15px;
-        margin-top: 30px;
+        width: 100%;
+
+        box-sizing: border-box;
+
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+
+        gap: 10px;
+
+        margin-top: 28px;
     }
 
     .about-card div {
-        padding: 15px;
+        min-width: 0;
+
+        box-sizing: border-box;
+
+        padding: 14px;
     }
 
     .about-card span {
-        font-size: 11px;
+        display: block;
+
+        font-size: 10px;
+        line-height: 1.4;
+
+        overflow-wrap: break-word;
     }
 
     .about-card strong {
+        display: block;
+
+        margin-top: 5px;
+
         font-size: 13px;
+        line-height: 1.4;
+
+        overflow-wrap: break-word;
     }
 
 
@@ -673,24 +767,48 @@ footer p {
        SKILLS
        ========================= */
 
+    .skills-header {
+        width: 100%;
+    }
+
     .skills-grid {
+        width: 100%;
+
+        display: grid;
         grid-template-columns: 1fr;
-        gap: 15px;
-        margin-top: 30px;
+
+        gap: 12px;
+
+        margin-top: 28px;
     }
 
     .skill-card {
-        min-height: 130px;
+        width: 100%;
+        min-height: 0;
+
+        box-sizing: border-box;
+
         padding: 20px;
+    }
+
+    .skill-info {
+        width: 100%;
     }
 
     .skill-info h3 {
         font-size: 20px;
+        line-height: 1.2;
+
+        overflow-wrap: break-word;
     }
 
     .skill-info p {
+        margin-top: 8px;
+
         font-size: 13px;
-        line-height: 1.5;
+        line-height: 1.6;
+
+        overflow-wrap: break-word;
     }
 
 
@@ -698,27 +816,47 @@ footer p {
        CONTACT
        ========================= */
 
+    .contact-content {
+        width: 100%;
+        max-width: 600px;
+
+        margin: 0 auto;
+    }
+
     .contact-text {
         width: 100%;
     }
 
     .contact-text > p:not(.small-title) {
+        margin-top: 15px;
+
         font-size: 14px;
         line-height: 1.7;
-        margin-top: 15px;
+
+        overflow-wrap: break-word;
     }
 
     .contact-links {
+        width: 100%;
+
         display: flex;
         flex-direction: column;
+
         gap: 10px;
+
         margin-top: 25px;
     }
 
     .contact-links a {
         width: 100%;
+
+        box-sizing: border-box;
+
         padding: 14px 16px;
+
         text-align: center;
+
+        overflow-wrap: break-word;
     }
 
 
@@ -728,25 +866,41 @@ footer p {
 
     .channel-content {
         width: 100%;
+        max-width: 600px;
+
+        margin: 0 auto;
     }
 
     .channel-content > p:not(.small-title) {
+        margin-top: 15px;
+
         font-size: 14px;
         line-height: 1.7;
-        margin-top: 15px;
+
+        overflow-wrap: break-word;
     }
 
     .channel-links {
+        width: 100%;
+
         display: flex;
         flex-direction: column;
+
         gap: 10px;
+
         margin-top: 25px;
     }
 
     .channel-links a {
         width: 100%;
+
+        box-sizing: border-box;
+
         padding: 14px 16px;
+
         text-align: center;
+
+        overflow-wrap: break-word;
     }
 
 
@@ -755,52 +909,40 @@ footer p {
        ========================= */
 
     footer {
+        width: 100%;
+
+        box-sizing: border-box;
+
         padding: 40px 20px;
+
         text-align: center;
     }
 
 
     /* =========================
-       MOBILE ANIMATION
+       SMALL PHONES
        ========================= */
 
-    .section > * {
-        animation: mobileAppear 0.8s ease both;
-    }
+    @media (max-width: 380px) {
 
-    .section:nth-child(2) > * {
-        animation-delay: 0.1s;
-    }
+        .section {
+            padding-left: 18px;
+            padding-right: 18px;
+        }
 
-    .section:nth-child(3) > * {
-        animation-delay: 0.15s;
-    }
+        .about-card {
+            grid-template-columns: 1fr;
+        }
 
-    .section:nth-child(4) > * {
-        animation-delay: 0.2s;
-    }
+        .hero-image {
+            width: 170px;
+            height: 170px;
+        }
 
-    .section:nth-child(5) > * {
-        animation-delay: 0.25s;
-    }
+        .hero h1 {
+            font-size: 48px;
+        }
 
-}
-
-
-/* =========================
-   ANIMATION
-   ========================= */
-
-@keyframes mobileAppear {
-
-    from {
-        opacity: 0;
-        transform: translateY(35px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
     }
 
 }

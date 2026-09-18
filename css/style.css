@@ -499,47 +499,6 @@ footer p {
 
 @media (max-width: 768px) {
 
-    /* ---------- HEADER ---------- */
-
-    .header {
-        height: 70px;
-        padding: 0 25px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .logo {
-        font-size: 27px;
-    }
-
-    .nav {
-        display: none;
-    }
-
-    .side-navigation {
-        display: none;
-    }
-
-
-    /* ---------- SECTIONS ---------- */
-
-    .section {
-        min-height: 100svh;
-        height: auto;
-        width: 100%;
-        box-sizing: border-box;
-
-        padding: 90px 30px 70px;
-
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-
-        scroll-snap-align: start;
-        scroll-snap-stop: always;
-    }
-
     html {
         scroll-behavior: smooth;
         scroll-snap-type: y mandatory;
@@ -550,53 +509,169 @@ footer p {
     }
 
 
-    /* ---------- HERO ---------- */
+    /* =====================================
+       HEADER
+    ===================================== */
+
+    .header {
+        height: 65px;
+        padding: 0 25px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+
+        z-index: 100;
+    }
+
+    .logo {
+        font-size: 26px;
+    }
+
+    .nav {
+        display: none;
+    }
+
+
+    /* =====================================
+       RIGHT NAVIGATION
+    ===================================== */
+
+    .side-navigation {
+        display: flex;
+
+        position: fixed;
+
+        right: 14px;
+        top: 50%;
+
+        transform: translateY(-50%);
+
+        flex-direction: column;
+        gap: 10px;
+
+        z-index: 100;
+    }
+
+    .side-navigation .dot {
+        width: 3px;
+        height: 22px;
+
+        display: block;
+
+        opacity: 0.35;
+
+        transition:
+            height 0.5s ease,
+            opacity 0.5s ease,
+            transform 0.5s ease;
+
+        border-radius: 10px;
+    }
+
+    .side-navigation .dot.active {
+        height: 38px;
+        opacity: 1;
+
+        transform: scaleX(1.15);
+    }
+
+
+    /* =====================================
+       SECTIONS
+    ===================================== */
+
+    .section {
+        width: 100%;
+        min-height: 100svh;
+        height: 100svh;
+
+        box-sizing: border-box;
+
+        padding: 75px 35px 45px;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        overflow: hidden;
+
+        scroll-snap-align: start;
+        scroll-snap-stop: always;
+    }
+
+
+    /* =====================================
+       HERO
+    ===================================== */
 
     .hero {
-        justify-content: flex-start;
+        padding-top: 75px;
+
+        justify-content: center;
+
         text-align: center;
-        padding-top: 90px;
     }
 
     .hero-image {
-        width: 100%;
         display: flex;
         justify-content: center;
-        margin-bottom: 20px;
+
+        margin-bottom: 22px;
     }
 
     .hero-image img {
-        width: 180px;
-        height: 180px;
+        width: 185px;
+        height: 185px;
+
         object-fit: cover;
-        border-radius: 50%;
+
+        border-radius: 30px;
+
+        border: 2px solid rgba(255, 255, 255, 0.18);
+
+        box-shadow:
+            0 0 0 7px rgba(255, 255, 255, 0.025),
+            0 15px 40px rgba(0, 0, 0, 0.35);
     }
 
     .hero-content {
         width: 100%;
-        max-width: 100%;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
         text-align: center;
     }
 
-    .small-title {
+    .hero-content .small-title {
         font-size: 14px;
-        margin-bottom: 8px;
+        margin-bottom: 5px;
     }
 
     .hero-content h1 {
-        font-size: 64px;
-        line-height: 1;
-        margin: 10px 0 18px;
+        font-size: 62px;
+        line-height: 0.95;
+
+        margin: 5px 0 18px;
+
+        letter-spacing: -2px;
     }
 
     .hero-content .description {
         width: 100%;
-        max-width: 500px;
+        max-width: 390px;
 
         margin: 0 auto;
 
         font-size: 18px;
-        line-height: 1.6;
+        line-height: 1.55;
 
         word-break: normal;
         overflow-wrap: normal;
@@ -604,43 +679,53 @@ footer p {
     }
 
     .buttons {
-        margin-top: 25px;
+        margin-top: 22px;
+
         display: flex;
         justify-content: center;
     }
 
     .button {
-        font-size: 17px;
-        padding: 13px 24px;
+        font-size: 16px;
+        padding: 12px 22px;
     }
 
 
-    /* ---------- SECTION TITLE ---------- */
+    /* =====================================
+       SECTION TITLE
+    ===================================== */
 
     .section-title {
-        margin-bottom: 35px;
+        margin-bottom: 20px;
     }
 
     .section-title span {
-        font-size: 13px;
+        font-size: 12px;
         letter-spacing: 2px;
     }
 
 
-    /* ---------- ABOUT ---------- */
+    /* =====================================
+       ABOUT
+    ===================================== */
 
-    .about-content {
-        width: 100%;
-    }
-
+    .about-content,
     .about-text {
         width: 100%;
     }
 
+    .about-text .small-title {
+        font-size: 14px;
+        margin-bottom: 6px;
+    }
+
     .about-text h2 {
-        font-size: 43px;
-        line-height: 1.1;
-        margin-bottom: 30px;
+        font-size: 39px;
+        line-height: 1;
+
+        margin: 0 0 24px;
+
+        letter-spacing: -1px;
     }
 
     .skills {
@@ -649,105 +734,110 @@ footer p {
 
     .skill {
         width: 100%;
-        max-width: 100%;
-        margin-bottom: 22px;
+        margin-bottom: 15px;
     }
 
     .skill strong {
         display: block;
 
-        font-size: 18px;
-        line-height: 1.3;
+        font-size: 17px;
+        line-height: 1.25;
 
-        margin-bottom: 7px;
+        margin-bottom: 4px;
 
         word-break: normal;
         overflow-wrap: normal;
-        white-space: normal;
     }
 
     .skill span {
         display: block;
 
         width: 100%;
-        max-width: 100%;
 
-        font-size: 17px;
-        line-height: 1.5;
+        font-size: 16px;
+        line-height: 1.4;
 
         word-break: normal;
         overflow-wrap: normal;
-        white-space: normal;
     }
 
 
-    /* ---------- ABOUT CARD ---------- */
+    /* =====================================
+       ABOUT CARD
+    ===================================== */
 
     .about-card {
         width: 100%;
-        max-width: 100%;
 
-        box-sizing: border-box;
-
-        margin-top: 30px;
+        margin-top: 20px;
 
         display: grid;
-        grid-template-columns: 1fr;
-        gap: 18px;
+        grid-template-columns: 1fr 1fr;
+
+        gap: 13px 20px;
     }
 
     .about-card > div {
-        width: 100%;
+        min-width: 0;
     }
 
     .about-card span {
         display: block;
 
-        font-size: 14px;
-        margin-bottom: 4px;
+        font-size: 12px;
+        line-height: 1.2;
 
-        word-break: normal;
-        overflow-wrap: normal;
-        white-space: normal;
+        margin-bottom: 3px;
     }
 
     .about-card strong {
         display: block;
 
-        font-size: 17px;
-        line-height: 1.4;
+        font-size: 15px;
+        line-height: 1.3;
 
         word-break: normal;
         overflow-wrap: normal;
-        white-space: normal;
     }
 
 
-    /* ---------- SKILLS ---------- */
+    /* =====================================
+       SKILLS
+    ===================================== */
 
     .skills-header {
         width: 100%;
     }
 
+    .skills-header .small-title {
+        font-size: 14px;
+        margin-bottom: 6px;
+    }
+
     .skills-header h2 {
-        font-size: 43px;
-        line-height: 1.1;
+        font-size: 39px;
+        line-height: 1;
+
+        margin: 0;
     }
 
     .skills-grid {
         width: 100%;
 
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 20px;
+        display: flex;
+        flex-direction: column;
 
-        margin-top: 30px;
+        gap: 13px;
+
+        margin-top: 24px;
     }
 
     .skill-card {
         width: 100%;
+
         box-sizing: border-box;
-        padding: 25px;
+
+        padding: 17px 19px;
     }
 
     .skill-info {
@@ -755,166 +845,172 @@ footer p {
     }
 
     .skill-info h3 {
-        font-size: 26px;
-        line-height: 1.2;
-        margin-bottom: 10px;
+        font-size: 23px;
+        line-height: 1.1;
+
+        margin: 0 0 6px;
     }
 
     .skill-info p {
-        font-size: 17px;
-        line-height: 1.6;
+        font-size: 15px;
+        line-height: 1.4;
+
+        margin: 0;
 
         word-break: normal;
         overflow-wrap: normal;
-        white-space: normal;
     }
 
 
-    /* ---------- CONTACT ---------- */
+    /* =====================================
+       CONTACT
+    ===================================== */
 
-    .contact-content {
-        width: 100%;
-    }
-
+    .contact-content,
     .contact-text {
         width: 100%;
     }
 
+    .contact-text .small-title {
+        font-size: 14px;
+        margin-bottom: 6px;
+    }
+
     .contact-text h2 {
-        font-size: 43px;
-        line-height: 1.1;
-        margin-bottom: 20px;
+        font-size: 39px;
+        line-height: 1;
+
+        margin: 0 0 18px;
     }
 
     .contact-text > p {
-        font-size: 18px;
-        line-height: 1.6;
+        font-size: 17px;
+        line-height: 1.5;
 
-        word-break: normal;
-        overflow-wrap: normal;
+        margin: 0;
     }
 
     .contact-links {
-        width: 100%;
-
         display: flex;
         flex-direction: column;
-        gap: 15px;
 
-        margin-top: 30px;
+        gap: 11px;
+
+        margin-top: 23px;
     }
 
     .contact-links a {
-        font-size: 17px;
-        line-height: 1.4;
-
-        word-break: normal;
-        overflow-wrap: normal;
+        font-size: 16px;
+        line-height: 1.3;
     }
 
 
-    /* ---------- CHANNELS ---------- */
+    /* =====================================
+       CHANNELS
+    ===================================== */
 
     .channel-content {
         width: 100%;
     }
 
+    .channel-content .small-title {
+        font-size: 14px;
+        margin-bottom: 6px;
+    }
+
     .channel-content h2 {
-        font-size: 43px;
-        line-height: 1.1;
-        margin-bottom: 20px;
+        font-size: 39px;
+        line-height: 1;
+
+        margin: 0 0 18px;
     }
 
     .channel-content > p {
-        font-size: 18px;
-        line-height: 1.6;
+        font-size: 17px;
+        line-height: 1.5;
 
-        word-break: normal;
-        overflow-wrap: normal;
+        margin: 0;
     }
 
     .channel-links {
-        width: 100%;
-
         display: flex;
         flex-direction: column;
-        gap: 15px;
 
-        margin-top: 30px;
+        gap: 11px;
+
+        margin-top: 23px;
     }
 
     .channel-links a {
-        font-size: 17px;
-        line-height: 1.4;
-
-        word-break: normal;
-        overflow-wrap: normal;
+        font-size: 16px;
+        line-height: 1.3;
     }
 
 
-    /* ---------- FOOTER ---------- */
+    /* =====================================
+       FOOTER
+    ===================================== */
 
     footer {
-        padding: 50px 30px;
+        padding: 35px 25px;
+
         text-align: center;
     }
 
     footer h2 {
-        font-size: 30px;
+        font-size: 27px;
     }
 
     footer p {
-        font-size: 14px;
-        line-height: 1.5;
+        font-size: 13px;
+    }
+}
+
+
+/* =========================================
+   SMALL PHONES
+========================================= */
+
+@media (max-width: 380px) {
+
+    .section {
+        padding-left: 28px;
+        padding-right: 28px;
     }
 
+    .hero-image img {
+        width: 165px;
+        height: 165px;
+    }
 
-    /* ---------- SMALL PHONES ---------- */
+    .hero-content h1 {
+        font-size: 56px;
+    }
 
-    @media (max-width: 380px) {
+    .hero-content .description {
+        font-size: 17px;
+    }
 
-        .section {
-            padding-left: 25px;
-            padding-right: 25px;
-        }
+    .about-text h2,
+    .skills-header h2,
+    .contact-text h2,
+    .channel-content h2 {
+        font-size: 35px;
+    }
 
-        .hero {
-            padding-top: 80px;
-        }
+    .about-card {
+        gap: 11px 15px;
+    }
 
-        .hero-image img {
-            width: 160px;
-            height: 160px;
-        }
+    .about-card strong {
+        font-size: 14px;
+    }
 
-        .hero-content h1 {
-            font-size: 58px;
-        }
+    .skill span {
+        font-size: 15px;
+    }
 
-        .hero-content .description {
-            font-size: 17px;
-        }
-
-        .about-text h2,
-        .skills-header h2,
-        .contact-text h2,
-        .channel-content h2 {
-            font-size: 38px;
-        }
-
-        .skill span,
-        .skill strong {
-            font-size: 16px;
-        }
-
-        .about-card strong {
-            font-size: 16px;
-        }
-
-        .skill-info p,
-        .contact-text > p,
-        .channel-content > p {
-            font-size: 17px;
-        }
+    .skill-info p {
+        font-size: 14px;
     }
 }

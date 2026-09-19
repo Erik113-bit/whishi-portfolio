@@ -1,439 +1,179 @@
 <!DOCTYPE html>
-<html lang="ru">
-
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Portfolio of Wishi</title>
+    <title>Wishi — Developer</title>
 
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="portfolio/css/style.css">
 </head>
 
 <body>
 
-    <!-- HEADER -->
+<!-- =========================================
+     HEADER
+========================================= -->
 
-    <header class="header">
+<header class="header">
 
-        <a href="#home" class="logo">Wishi</a>
+    <a href="#home" class="logo">
+        Wishi
+    </a>
 
-        <nav class="nav">
-            <a href="#home">Главная</a>
-            <a href="#about">Обо мне</a>
-            <a href="#skills">Навыки</a>
-            <a href="#contact">Контакты</a>
-            <a href="#channels">Каналы</a>
-        </nav>
+    <nav class="nav">
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">Contact</a>
+        <a href="#channels">Channels</a>
+    </nav>
 
-    </header>
+</header>
 
 
-    <!-- SECTION NAVIGATION -->
+<!-- =========================================
+     SECTION INDICATORS
+========================================= -->
 
-    <div class="side-navigation">
+<div class="side-navigation">
 
-        <a href="#home" class="dot active" aria-label="Секция 1"></a>
-        <a href="#about" class="dot" aria-label="Секция 2"></a>
-        <a href="#skills" class="dot" aria-label="Секция 3"></a>
-        <a href="#contact" class="dot" aria-label="Секция 4"></a>
-        <a href="#channels" class="dot" aria-label="Секция 5"></a>
+    <a href="#home" class="dot active"></a>
+    <a href="#about" class="dot"></a>
+    <a href="#skills" class="dot"></a>
+    <a href="#contact" class="dot"></a>
+    <a href="#channels" class="dot"></a>
+
+</div>
+
+
+<!-- =========================================
+     HERO
+========================================= -->
+
+<section id="home" class="section hero">
+
+    <div class="hero-image">
+
+        <img src="images/Wishi.png" alt="Wishi">
 
     </div>
 
 
-    <main>
+    <div class="hero-content">
 
+        <p class="small-title">
+            DEVELOPER
+        </p>
 
-        <!-- =========================================
-             HOME
-        ========================================== -->
+        <h1>
+            Wishi
+        </h1>
 
-        <section id="home" class="section hero">
+        <p class="description">
+            I'm a programmer who enjoys building modern websites,
+            applications and digital projects.
+        </p>
 
-            <div class="hero-image">
+        <div class="buttons">
 
-                <img
-                    src="images/Wishi.png"
-                    alt="Wishi"
-                >
+            <a href="#about" class="button primary">
+                About me →
+            </a>
 
-            </div>
+        </div>
 
+    </div>
 
-            <div class="hero-content">
+</section>
 
-                <p class="small-title">
-                    Привет, я...
-                </p>
 
-                <h1>
-                    Wishi
-                </h1>
+<!-- =========================================
+     ABOUT
+========================================= -->
 
-                <p class="description">
-                    Кодер, монтажёр. Создаю проекты,
-                    экспериментирую с кодом и визуалом.
-                    Люблю делать вещи, которые хорошо
-                    работают и выглядят.
-                </p>
+<section id="about" class="section">
 
-                <div class="buttons">
+    <div class="section-top">
 
-                    <a
-                        href="#about"
-                        class="button primary"
-                    >
-                        Обо мне →
-                    </a>
+        <div class="section-title">
+            <span>ABOUT ME</span>
+        </div>
 
-                </div>
+    </div>
 
-            </div>
 
-        </section>
+    <div class="about-slider">
 
+        <div class="about-pages">
 
 
-        <!-- =========================================
-             ABOUT
-        ========================================== -->
+            <!-- PAGE 1 -->
 
-        <section id="about" class="section about-section">
+            <div class="about-page">
 
-            <div class="section-title">
-                <span>ABOUT ME</span>
-            </div>
-
-
-            <div class="about-slider">
-
-                <div class="about-pages">
-
-
-                    <!-- ABOUT PAGE 1 -->
-
-                    <div class="about-page">
-
-                        <p class="small-title">
-                            Обо мне
-                        </p>
-
-                        <h2>
-                            Коротко обо мне
-                        </h2>
-
-
-                        <div class="about-card">
-
-                            <div class="about-item">
-
-                                <span>
-                                    Никнейм
-                                </span>
-
-                                <strong>
-                                    Wishi
-                                </strong>
-
-                            </div>
-
-
-                            <div class="about-item">
-
-                                <span>
-                                    День рождения
-                                </span>
-
-                                <strong>
-                                    2 февраля
-                                </strong>
-
-                            </div>
-
-
-                            <div class="about-item">
-
-                                <span>
-                                    В программировании
-                                </span>
-
-                                <strong>
-                                    Около 4 лет
-                                </strong>
-
-                            </div>
-
-
-                            <div class="about-item">
-
-                                <span>
-                                    Изучаю
-                                </span>
-
-                                <strong>
-                                    Арабский и Английский
-                                </strong>
-
-                            </div>
-
-                        </div>
-
-                    </div>
-
-
-
-                    <!-- ABOUT PAGE 2 -->
-
-                    <div class="about-page">
-
-                        <p class="small-title">
-                            Навыки
-                        </p>
-
-                        <h2>
-                            Что я использую
-                        </h2>
-
-
-                        <div class="about-skills">
-
-
-                            <div class="about-skill-block">
-
-                                <h3>
-                                    Языки программирования
-                                </h3>
-
-
-                                <div class="programming-languages">
-
-                                    <span>C</span>
-                                    <span>C++</span>
-                                    <span>Python</span>
-                                    <span>JavaScript</span>
-                                    <span>Lua</span>
-
-                                </div>
-
-                            </div>
-
-
-
-                            <div class="about-skill-block">
-
-                                <h3>
-                                    Инструменты
-                                </h3>
-
-                                <p>
-                                    HTML, CSS, Git, Bash,
-                                    PowerShell, raylib for C
-                                </p>
-
-                            </div>
-
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <!-- ABOUT CONTROLS -->
-
-            <div class="about-navigation">
-
-                <button
-                    type="button"
-                    class="about-arrow about-prev"
-                    aria-label="Предыдущая страница"
-                >
-                    ‹
-                </button>
-
-
-                <div class="about-dots">
-
-                    <span class="about-dot active"></span>
-                    <span class="about-dot"></span>
-
-                </div>
-
-
-                <button
-                    type="button"
-                    class="about-arrow about-next"
-                    aria-label="Следующая страница"
-                >
-                    ›
-                </button>
-
-            </div>
-
-        </section>
-
-
-
-        <!-- =========================================
-             SKILLS
-        ========================================== -->
-
-        <section id="skills" class="section">
-
-            <div class="section-title">
-                <span>ABOUT SKILLS</span>
-            </div>
-
-
-            <div class="skills-header">
-
-                <p class="small-title">
-                    Навыки
-                </p>
-
-                <h2>
-                    About Skills
-                </h2>
-
-            </div>
-
-
-            <div class="skills-grid">
-
-
-                <article class="skill-card">
-
-                    <div class="skill-info">
-
-                        <h3>
-                            Edit
-                        </h3>
-
-                        <p>
-                            Умею редактировать длинные видео
-                            для YouTube и создавать эдиты
-                            в TikTok.
-                        </p>
-
-                    </div>
-
-                </article>
-
-
-
-                <article class="skill-card">
-
-                    <div class="skill-info">
-
-                        <h3>
-                            Обложки
-                        </h3>
-
-                        <p>
-                            Умею создавать обложки
-                            для различных проектов.
-                        </p>
-
-                    </div>
-
-                </article>
-
-
-
-                <article class="skill-card">
-
-                    <div class="skill-info">
-
-                        <h3>
-                            Obsidian
-                        </h3>
-
-                        <p>
-                            Умею пользоваться приложением
-                            Obsidian для организации информации.
-                        </p>
-
-                    </div>
-
-                </article>
-
-
-
-                <article class="skill-card">
-
-                    <div class="skill-info">
-
-                        <h3>
-                            Инструменты монтажа
-                        </h3>
-
-                        <p>
-                            Для монтажа пользуюсь
-                            VSDC и CapCut.
-                        </p>
-
-                    </div>
-
-                </article>
-
-
-            </div>
-
-        </section>
-
-
-
-        <!-- =========================================
-             CONTACTS
-        ========================================== -->
-
-        <section id="contact" class="section">
-
-            <div class="section-title">
-                <span>CONTACTS</span>
-            </div>
-
-
-            <div class="contact-content">
-
-                <div class="contact-text">
+                <div class="about-text">
 
                     <p class="small-title">
-                        Контакты
+                        WHO I AM
                     </p>
 
                     <h2>
-                        Свяжитесь со мной
+                        About me
                     </h2>
 
-                    <p>
-                        Если у вас есть вопрос, предложение
-                        или идея для проекта — буду рад
-                        обсудить её.
-                    </p>
+                </div>
 
 
-                    <div class="contact-links">
+                <div class="about-card">
 
-                        <a href="https://t.me/byvscode">
-                            Telegram
-                        </a>
+                    <div>
 
-                        <a href="https://github.com/SecDetxCoding">
-                            GitHub
-                        </a>
+                        <span>
+                            NICKNAME
+                        </span>
 
-                        <a href="https://www.tiktok.com/@wishtegs">
-                            TikTok
-                        </a>
+                        <strong>
+                            Wishi
+                        </strong>
 
-                        <a href="mailto:wishixcoding@gmail.com">
-                            Email
-                        </a>
+                    </div>
+
+
+                    <div>
+
+                        <span>
+                            BIRTHDAY
+                        </span>
+
+                        <strong>
+                            2 February
+                        </strong>
+
+                    </div>
+
+
+                    <div>
+
+                        <span>
+                            PROGRAMMING
+                        </span>
+
+                        <strong>
+                            About 1 year
+                        </strong>
+
+                    </div>
+
+
+                    <div>
+
+                        <span>
+                            STUDIED
+                        </span>
+
+                        <strong>
+                            Web Development
+                        </strong>
 
                     </div>
 
@@ -441,79 +181,345 @@
 
             </div>
 
-        </section>
+
+            <!-- PAGE 2 -->
+
+            <div class="about-page">
+
+                <div class="about-text">
+
+                    <p class="small-title">
+                        MY STACK
+                    </p>
+
+                    <h2>
+                        Languages
+                    </h2>
+
+                </div>
 
 
+                <div class="about-skills">
 
-        <!-- =========================================
-             CHANNELS
-        ========================================== -->
+                    <div class="about-skill-block">
 
-        <section id="channels" class="section">
-
-            <div class="section-title">
-                <span>MY CHANNELS</span>
-            </div>
+                        <span class="about-skill-title">
+                            PROGRAMMING LANGUAGES
+                        </span>
 
 
-            <div class="channel-content">
+                        <div class="programming-languages">
 
-                <p class="small-title">
-                    Каналы
-                </p>
+                            <span class="programming-language">
+                                HTML
+                            </span>
 
-                <h2>
-                    Подпишитесь на меня
-                </h2>
+                            <span class="programming-language">
+                                CSS
+                            </span>
 
-                <p>
-                    Если вы хотите следить за мной
-                    в каналах, буду рад каждому.
-                </p>
+                            <span class="programming-language">
+                                JavaScript
+                            </span>
+
+                            <span class="programming-language">
+                                Python
+                            </span>
+
+                        </div>
+
+                    </div>
 
 
-                <div class="channel-links">
+                    <div class="about-skill-block">
 
-                    <a href="https://t.me/Wishitg">
-                        Telegram Channel
-                    </a>
+                        <span class="about-skill-title">
+                            TOOLS
+                        </span>
 
-                    <a href="https://t.me/fAYSONdev">
-                        Telegram Channel of my friend
-                    </a>
 
-                    <a href="https://t.me/teamwishes">
-                        Сообщество программистов
-                    </a>
+                        <div class="programming-languages">
+
+                            <span class="programming-language">
+                                VS Code
+                            </span>
+
+                            <span class="programming-language">
+                                Git
+                            </span>
+
+                            <span class="programming-language">
+                                GitHub
+                            </span>
+
+                        </div>
+
+                    </div>
 
                 </div>
 
             </div>
 
-        </section>
+        </div>
+
+    </div>
 
 
-    </main>
+    <!-- ABOUT NAVIGATION -->
+
+    <div class="about-navigation">
+
+        <button
+            type="button"
+            class="about-arrow about-prev"
+            aria-label="Previous page"
+        >
+            ‹
+        </button>
 
 
+        <div class="about-dots">
 
-    <!-- FOOTER -->
+            <span class="about-dot active"></span>
 
-    <footer>
+            <span class="about-dot"></span>
+
+        </div>
+
+
+        <button
+            type="button"
+            class="about-arrow about-next"
+            aria-label="Next page"
+        >
+            ›
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================
+     SKILLS
+========================================= -->
+
+<section id="skills" class="section">
+
+    <div class="section-top">
+
+        <div class="section-title">
+            <span>SKILLS</span>
+        </div>
+
+    </div>
+
+
+    <div class="skills-header">
+
+        <p class="small-title">
+            WHAT I DO
+        </p>
 
         <h2>
-            Wishi
+            My skills
+        </h2>
+
+    </div>
+
+
+    <div class="skills-grid">
+
+
+        <div class="skill-card">
+
+            <div class="skill-info">
+
+                <h3>
+                    Web Development
+                </h3>
+
+                <p>
+                    Creating modern and responsive websites
+                    with clean and structured code.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="skill-card">
+
+            <div class="skill-info">
+
+                <h3>
+                    Frontend
+                </h3>
+
+                <p>
+                    Building interfaces with HTML, CSS
+                    and JavaScript.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="skill-card">
+
+            <div class="skill-info">
+
+                <h3>
+                    UI / UX
+                </h3>
+
+                <p>
+                    Creating clean, minimal and
+                    user-friendly interfaces.
+                </p>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+<!-- =========================================
+     CONTACT
+========================================= -->
+
+<section id="contact" class="section">
+
+    <div class="section-top">
+
+        <div class="section-title">
+            <span>CONTACT</span>
+        </div>
+
+    </div>
+
+
+    <div class="contact-content">
+
+        <div class="contact-text">
+
+            <p class="small-title">
+                GET IN TOUCH
+            </p>
+
+            <h2>
+                Contact me
+            </h2>
+
+            <p>
+                If you have a project or idea,
+                feel free to contact me.
+            </p>
+
+
+            <div class="contact-links">
+
+                <a href="#" target="_blank">
+                    Telegram →
+                </a>
+
+                <a href="#" target="_blank">
+                    Instagram →
+                </a>
+
+                <a href="#" target="_blank">
+                    GitHub →
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================
+     CHANNELS
+========================================= -->
+
+<section id="channels" class="section">
+
+    <div class="section-top">
+
+        <div class="section-title">
+            <span>CHANNELS</span>
+        </div>
+
+    </div>
+
+
+    <div class="channel-content">
+
+        <p class="small-title">
+            SOCIAL
+        </p>
+
+        <h2>
+            My channels
         </h2>
 
         <p>
-            © 2026 Wishi. Все права защищены.
+            You can find my projects and updates
+            on these platforms.
         </p>
 
-    </footer>
+
+        <div class="channel-links">
+
+            <a href="#" target="_blank">
+                Telegram →
+            </a>
+
+            <a href="#" target="_blank">
+                GitHub →
+            </a>
+
+            <a href="#" target="_blank">
+                YouTube →
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
 
 
-    <script src="js/script.js"></script>
+<!-- =========================================
+     FOOTER
+========================================= -->
+
+<footer>
+
+    <h2>
+        Wishi
+    </h2>
+
+    <p>
+        © 2026 Wishi. All rights reserved.
+    </p>
+
+</footer>
+
+
+<!-- =========================================
+     JAVASCRIPT
+========================================= -->
+
+<script src="js/script.js"></script>
 
 </body>
-
 </html>

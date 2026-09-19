@@ -1,3 +1,7 @@
+/* =========================================
+   MAIN SECTIONS
+========================================= */
+
 const sections = document.querySelectorAll(".section");
 const dots = document.querySelectorAll(".side-navigation .dot");
 
@@ -5,68 +9,226 @@ let currentSection = 0;
 let isScrolling = false;
 
 let touchStartY = 0;
-let touchEndY = 0;
+let touchStartX = 0;
 
 const SWIPE_THRESHOLD = 35;
-const SCROLL_LOCK_TIME = 750;
+const SCROLL_LOCK_TIME = 700;
 
 
-/* =========================
-   FIND CURRENT SECTION
-========================= */
+
+/* =========================================
+   ABOUT SLIDER
+========================================= */
+
+const aboutPages = document.querySelector(".about-pages");
+
+const aboutPrev = document.querySelector(".about-prev");
+const aboutNext = document.querySelector(".about-next");
+
+const aboutDots = document.querySelectorAll(".about-dot");
+
+let currentAboutPage = 0;
+
+
+
+/* =========================================
+   UPDATE ABOUT
+========================================= */
+
+function updateAboutSlider() {
+
+    if (!aboutPages) {
+        return;
+    }
+
+    aboutPages.style.transform =
+        `translateX(-${currentAboutPage * 50}%)`;
+
+
+    aboutDots.forEach((dot, index) => {
+
+        dot.classList.toggle(
+            "active",
+            index === currentAboutPage
+        );
+
+    });
+
+}
+
+
+
+/* =========================================
+   GO TO ABOUT PAGE
+========================================= */
+
+function goToAboutPage(index) {
+
+    if (index < 0) {
+        index = 0;
+    }
+
+    if (index > 1) {
+        index = 1;
+    }
+
+    currentAboutPage = index;
+
+    updateAboutSlider();
+}
+
+
+
+/* =========================================
+   ABOUT PREVIOUS
+========================================= */
+
+if (aboutPrev) {
+
+    aboutPrev.addEventListener(
+        "click",
+        () => {
+
+            goToAboutPage(
+                currentAboutPage - 1
+            );
+
+        }
+    );
+
+}
+
+
+
+/* =========================================
+   ABOUT NEXT
+========================================= */
+
+if (aboutNext) {
+
+    aboutNext.addEventListener(
+        "click",
+        () => {
+
+            goToAboutPage(
+                currentAboutPage + 1
+            );
+
+        }
+    );
+
+}
+
+
+
+/* =========================================
+   ABOUT DOTS
+========================================= */
+
+aboutDots.forEach(
+    (dot, index) => {
+
+        dot.addEventListener(
+            "click",
+            () => {
+
+                goToAboutPage(index);
+
+            }
+        );
+
+    }
+);
+
+
+
+/* =========================================
+   CURRENT MAIN SECTION
+========================================= */
 
 function updateCurrentSection() {
 
     let closestIndex = 0;
     let smallestDistance = Infinity;
 
-    sections.forEach((section, index) => {
 
-        const rect = section.getBoundingClientRect();
+    sections.forEach(
+        (section, index) => {
 
-        const distance = Math.abs(rect.top);
+            const rect =
+                section.getBoundingClientRect();
 
-        if (distance < smallestDistance) {
-            smallestDistance = distance;
-            closestIndex = index;
+
+            const distance =
+                Math.abs(
+                    rect.top
+                );
+
+
+            if (
+                distance <
+                smallestDistance
+            ) {
+
+                smallestDistance =
+                    distance;
+
+                closestIndex =
+                    index;
+
+            }
+
         }
-    });
+    );
 
-    currentSection = closestIndex;
+
+    currentSection =
+        closestIndex;
+
 
     updateDots();
 }
 
 
-/* =========================
-   UPDATE DOTS
-========================= */
+
+/* =========================================
+   UPDATE MAIN DOTS
+========================================= */
 
 function updateDots() {
 
-    dots.forEach((dot, index) => {
+    dots.forEach(
+        (dot, index) => {
 
-        dot.classList.toggle(
-            "active",
-            index === currentSection
-        );
-    });
+            dot.classList.toggle(
+                "active",
+                index === currentSection
+            );
+
+        }
+    );
 }
 
 
-/* =========================
-   GO TO SECTION
-========================= */
+
+/* =========================================
+   GO TO MAIN SECTION
+========================================= */
 
 function goToSection(index) {
 
-    if (index < 0 || index >= sections.length) {
+    if (
+        index < 0 ||
+        index >= sections.length
+    ) {
         return;
     }
+
 
     if (isScrolling) {
         return;
     }
+
 
     isScrolling = true;
 
@@ -74,86 +236,182 @@ function goToSection(index) {
 
     updateDots();
 
+
     sections[index].scrollIntoView({
         behavior: "smooth",
         block: "start"
     });
 
-    setTimeout(() => {
 
-        isScrolling = false;
+    setTimeout(
+        () => {
 
-        updateCurrentSection();
+            isScrolling = false;
 
-    }, SCROLL_LOCK_TIME);
+            updateCurrentSection();
+
+        },
+        SCROLL_LOCK_TIME
+    );
 }
 
 
-/* =========================
-   DOT CLICK
-========================= */
 
-dots.forEach((dot, index) => {
+/* =========================================
+   MAIN DOT CLICK
+========================================= */
 
-    dot.addEventListener("click", (event) => {
+dots.forEach(
+    (dot, index) => {
 
-        event.preventDefault();
+        dot.addEventListener(
+            "click",
+            (event) => {
 
-        goToSection(index);
-    });
-});
+                event.preventDefault();
+
+                goToSection(index);
+
+            }
+        );
+
+    }
+);
 
 
-/* =========================
+
+/* =========================================
    TOUCH START
-========================= */
+========================================= */
 
 window.addEventListener(
     "touchstart",
     (event) => {
 
-        if (window.innerWidth > 768) {
+        if (
+            window.innerWidth > 768
+        ) {
             return;
         }
+
 
         if (isScrolling) {
             return;
         }
 
-        touchStartY = event.touches[0].clientY;
+
+        touchStartY =
+            event.touches[0].clientY;
+
+        touchStartX =
+            event.touches[0].clientX;
+
     },
-    { passive: true }
+    {
+        passive: true
+    }
 );
 
 
-/* =========================
+
+/* =========================================
    TOUCH END
-========================= */
+========================================= */
 
 window.addEventListener(
     "touchend",
     (event) => {
 
-        if (window.innerWidth > 768) {
+        if (
+            window.innerWidth > 768
+        ) {
             return;
         }
+
 
         if (isScrolling) {
             return;
         }
 
-        touchEndY = event.changedTouches[0].clientY;
 
-        const difference =
+        const touchEndY =
+            event.changedTouches[0].clientY;
+
+        const touchEndX =
+            event.changedTouches[0].clientX;
+
+
+        const differenceY =
             touchStartY - touchEndY;
 
+        const differenceX =
+            touchStartX - touchEndX;
 
-        if (Math.abs(difference) < SWIPE_THRESHOLD) {
+
+
+        /*
+           Если пользователь находится
+           внутри About и двигает пальцем
+           по горизонтали — переключаем
+           About страницы.
+        */
+
+        const aboutSection =
+            document.querySelector("#about");
+
+
+        if (aboutSection) {
+
+            const rect =
+                aboutSection.getBoundingClientRect();
+
+
+            const insideAbout =
+                rect.top <= window.innerHeight / 2 &&
+                rect.bottom >= window.innerHeight / 2;
+
+
+            if (
+                insideAbout &&
+                Math.abs(differenceX) >
+                Math.abs(differenceY) &&
+                Math.abs(differenceX) >
+                SWIPE_THRESHOLD
+            ) {
+
+                if (differenceX > 0) {
+
+                    goToAboutPage(
+                        currentAboutPage + 1
+                    );
+
+                } else {
+
+                    goToAboutPage(
+                        currentAboutPage - 1
+                    );
+
+                }
+
+                return;
+            }
+        }
+
+
+
+        /*
+           Обычный вертикальный swipe
+        */
+
+        if (
+            Math.abs(differenceY) <
+            SWIPE_THRESHOLD
+        ) {
             return;
         }
 
 
-        if (difference > 0) {
+        if (differenceY > 0) {
 
             goToSection(
                 currentSection + 1
@@ -164,32 +422,44 @@ window.addEventListener(
             goToSection(
                 currentSection - 1
             );
+
         }
 
     },
-    { passive: true }
+    {
+        passive: true
+    }
 );
 
 
-/* =========================
+
+/* =========================================
    MOUSE WHEEL
-========================= */
+========================================= */
 
 window.addEventListener(
     "wheel",
     (event) => {
 
-        if (window.innerWidth <= 768) {
+        if (
+            window.innerWidth <= 768
+        ) {
             return;
         }
+
 
         if (isScrolling) {
             return;
         }
 
-        if (Math.abs(event.deltaY) < 10) {
+
+        if (
+            Math.abs(event.deltaY) <
+            10
+        ) {
             return;
         }
+
 
         if (event.deltaY > 0) {
 
@@ -202,18 +472,23 @@ window.addEventListener(
             goToSection(
                 currentSection - 1
             );
+
         }
 
     },
-    { passive: true }
+    {
+        passive: true
+    }
 );
 
 
-/* =========================
+
+/* =========================================
    NORMAL SCROLL
-========================= */
+========================================= */
 
 let scrollTimer;
+
 
 window.addEventListener(
     "scroll",
@@ -221,21 +496,33 @@ window.addEventListener(
 
         clearTimeout(scrollTimer);
 
-        scrollTimer = setTimeout(() => {
 
-            if (!isScrolling) {
-                updateCurrentSection();
-            }
+        scrollTimer =
+            setTimeout(
+                () => {
 
-        }, 80);
+                    if (!isScrolling) {
+
+                        updateCurrentSection();
+
+                    }
+
+                },
+                80
+            );
 
     },
-    { passive: true }
+    {
+        passive: true
+    }
 );
 
 
-/* =========================
+
+/* =========================================
    START
-========================= */
+========================================= */
 
 updateCurrentSection();
+
+updateAboutSlider();

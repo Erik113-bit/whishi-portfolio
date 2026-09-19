@@ -5,18 +5,47 @@ let currentSection = 0;
 let isScrolling = false;
 
 let touchStartY = 0;
+let touchEndY = 0;
 
-const SWIPE_THRESHOLD = 20;
-const SCROLL_LOCK_TIME = 800;
+const SWIPE_THRESHOLD = 35;
+const SCROLL_LOCK_TIME = 750;
 
 
-/* =========================================
-   UPDATE ACTIVE DOT
-========================================= */
+/* =========================
+   FIND CURRENT SECTION
+========================= */
 
-function updateActiveDot() {
+function updateCurrentSection() {
+
+    let closestIndex = 0;
+    let smallestDistance = Infinity;
+
+    sections.forEach((section, index) => {
+
+        const rect = section.getBoundingClientRect();
+
+        const distance = Math.abs(rect.top);
+
+        if (distance < smallestDistance) {
+            smallestDistance = distance;
+            closestIndex = index;
+        }
+    });
+
+    currentSection = closestIndex;
+
+    updateDots();
+}
+
+
+/* =========================
+   UPDATE DOTS
+========================= */
+
+function updateDots() {
 
     dots.forEach((dot, index) => {
+
         dot.classList.toggle(
             "active",
             index === currentSection
@@ -25,38 +54,9 @@ function updateActiveDot() {
 }
 
 
-/* =========================================
-   FIND CURRENT SECTION
-========================================= */
-
-function updateCurrentSection() {
-
-    let closest = 0;
-    let smallestDistance = Infinity;
-
-    sections.forEach((section, index) => {
-
-        const distance = Math.abs(
-            section.getBoundingClientRect().top
-        );
-
-        if (distance < smallestDistance) {
-
-            smallestDistance = distance;
-            closest = index;
-
-        }
-    });
-
-    currentSection = closest;
-
-    updateActiveDot();
-}
-
-
-/* =========================================
+/* =========================
    GO TO SECTION
-========================================= */
+========================= */
 
 function goToSection(index) {
 
@@ -72,7 +72,7 @@ function goToSection(index) {
 
     currentSection = index;
 
-    updateActiveDot();
+    updateDots();
 
     sections[index].scrollIntoView({
         behavior: "smooth",
@@ -89,115 +89,9 @@ function goToSection(index) {
 }
 
 
-/* =========================================
-   TOUCH START
-========================================= */
-
-window.addEventListener("touchstart", (event) => {
-
-    if (window.innerWidth > 768) {
-        return;
-    }
-
-    touchStartY = event.touches[0].clientY;
-
-}, { passive: true });
-
-
-/* =========================================
-   TOUCH END
-========================================= */
-
-window.addEventListener("touchend", (event) => {
-
-    if (window.innerWidth > 768) {
-        return;
-    }
-
-    if (isScrolling) {
-        return;
-    }
-
-    const touchEndY =
-        event.changedTouches[0].clientY;
-
-    const difference =
-        touchStartY - touchEndY;
-
-
-    /* Swipe UP */
-
-    if (difference > SWIPE_THRESHOLD) {
-
-        goToSection(currentSection + 1);
-
-        return;
-    }
-
-
-    /* Swipe DOWN */
-
-    if (difference < -SWIPE_THRESHOLD) {
-
-        goToSection(currentSection - 1);
-    }
-
-}, { passive: true });
-
-
-/* =========================================
-   MOUSE WHEEL
-========================================= */
-
-window.addEventListener("wheel", (event) => {
-
-    if (window.innerWidth > 768) {
-        return;
-    }
-
-    if (isScrolling) {
-        event.preventDefault();
-        return;
-    }
-
-    if (Math.abs(event.deltaY) < 15) {
-        return;
-    }
-
-    event.preventDefault();
-
-
-    if (event.deltaY > 0) {
-
-        goToSection(currentSection + 1);
-
-    } else {
-
-        goToSection(currentSection - 1);
-
-    }
-
-}, { passive: false });
-
-
-/* =========================================
-   MANUAL SCROLL
-========================================= */
-
-window.addEventListener("scroll", () => {
-
-    if (!isScrolling) {
-
-        updateCurrentSection();
-
-    }
-
-});
-
-
-/* =========================================
-   CLICK ON RIGHT DOT
-========================================= */
+/* =========================
+   DOT CLICK
+========================= */
 
 dots.forEach((dot, index) => {
 
@@ -206,14 +100,142 @@ dots.forEach((dot, index) => {
         event.preventDefault();
 
         goToSection(index);
-
     });
-
 });
 
 
-/* =========================================
-   INITIAL STATE
-========================================= */
+/* =========================
+   TOUCH START
+========================= */
+
+window.addEventListener(
+    "touchstart",
+    (event) => {
+
+        if (window.innerWidth > 768) {
+            return;
+        }
+
+        if (isScrolling) {
+            return;
+        }
+
+        touchStartY = event.touches[0].clientY;
+    },
+    { passive: true }
+);
+
+
+/* =========================
+   TOUCH END
+========================= */
+
+window.addEventListener(
+    "touchend",
+    (event) => {
+
+        if (window.innerWidth > 768) {
+            return;
+        }
+
+        if (isScrolling) {
+            return;
+        }
+
+        touchEndY = event.changedTouches[0].clientY;
+
+        const difference =
+            touchStartY - touchEndY;
+
+
+        if (Math.abs(difference) < SWIPE_THRESHOLD) {
+            return;
+        }
+
+
+        if (difference > 0) {
+
+            goToSection(
+                currentSection + 1
+            );
+
+        } else {
+
+            goToSection(
+                currentSection - 1
+            );
+        }
+
+    },
+    { passive: true }
+);
+
+
+/* =========================
+   MOUSE WHEEL
+========================= */
+
+window.addEventListener(
+    "wheel",
+    (event) => {
+
+        if (window.innerWidth <= 768) {
+            return;
+        }
+
+        if (isScrolling) {
+            return;
+        }
+
+        if (Math.abs(event.deltaY) < 10) {
+            return;
+        }
+
+        if (event.deltaY > 0) {
+
+            goToSection(
+                currentSection + 1
+            );
+
+        } else {
+
+            goToSection(
+                currentSection - 1
+            );
+        }
+
+    },
+    { passive: true }
+);
+
+
+/* =========================
+   NORMAL SCROLL
+========================= */
+
+let scrollTimer;
+
+window.addEventListener(
+    "scroll",
+    () => {
+
+        clearTimeout(scrollTimer);
+
+        scrollTimer = setTimeout(() => {
+
+            if (!isScrolling) {
+                updateCurrentSection();
+            }
+
+        }, 80);
+
+    },
+    { passive: true }
+);
+
+
+/* =========================
+   START
+========================= */
 
 updateCurrentSection();

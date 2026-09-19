@@ -1,50 +1,62 @@
-const sections = document.querySelectorAll(".section");
-const dots = document.querySelectorAll(".side-navigation .dot");
-
-let currentSection = 0;
-let isScrolling = false;
-
-let touchStartY = 0;
-let touchEndY = 0;
-
-const SWIPE_THRESHOLD = 35;
-const SCROLL_LOCK_TIME = 750;
-
-
 /* =========================================
    SECTION NAVIGATION
 ========================================= */
 
-function updateCurrentSection() {
+const sections = Array.from(
+    document.querySelectorAll(".section")
+);
 
-    let closestIndex = 0;
-    let smallestDistance = Infinity;
+const sectionDots = Array.from(
+    document.querySelectorAll(".side-navigation .dot")
+);
 
-    sections.forEach((section, index) => {
-
-        const rect = section.getBoundingClientRect();
-
-        const distance = Math.abs(rect.top);
-
-        if (distance < smallestDistance) {
-            smallestDistance = distance;
-            closestIndex = index;
-        }
-    });
-
-    currentSection = closestIndex;
-
-    updateDots();
-}
+let currentSection = 0;
 
 
 /* =========================================
-   UPDATE SECTION DOTS
+   ACTIVE SECTION
 ========================================= */
 
-function updateDots() {
+function updateActiveSection() {
 
-    dots.forEach((dot, index) => {
+    const scrollPosition =
+        window.scrollY + window.innerHeight / 2;
+
+
+    let closestSection = 0;
+
+    let closestDistance = Infinity;
+
+
+    sections.forEach((section, index) => {
+
+        const sectionTop = section.offsetTop;
+
+        const sectionHeight = section.offsetHeight;
+
+        const sectionCenter =
+            sectionTop + sectionHeight / 2;
+
+
+        const distance =
+            Math.abs(scrollPosition - sectionCenter);
+
+
+        if (distance < closestDistance) {
+
+            closestDistance = distance;
+
+            closestSection = index;
+
+        }
+
+    });
+
+
+    currentSection = closestSection;
+
+
+    sectionDots.forEach((dot, index) => {
 
         dot.classList.toggle(
             "active",
@@ -52,184 +64,56 @@ function updateDots() {
         );
 
     });
+
 }
 
 
 /* =========================================
-   GO TO SECTION
+   SCROLL EVENT
 ========================================= */
 
-function goToSection(index) {
-
-    if (index < 0 || index >= sections.length) {
-        return;
-    }
-
-    if (isScrolling) {
-        return;
-    }
-
-    isScrolling = true;
-
-    currentSection = index;
-
-    updateDots();
-
-    sections[index].scrollIntoView({
-        behavior: "smooth",
-        block: "start"
-    });
-
-    setTimeout(() => {
-
-        isScrolling = false;
-
-        updateCurrentSection();
-
-    }, SCROLL_LOCK_TIME);
-}
+window.addEventListener(
+    "scroll",
+    updateActiveSection,
+    { passive: true }
+);
 
 
 /* =========================================
-   SECTION DOT CLICK
+   INITIAL STATE
 ========================================= */
 
-dots.forEach((dot, index) => {
+updateActiveSection();
+
+
+/* =========================================
+   SECTION DOTS
+========================================= */
+
+sectionDots.forEach((dot, index) => {
 
     dot.addEventListener("click", (event) => {
 
         event.preventDefault();
 
-        goToSection(index);
+
+        const targetSection =
+            sections[index];
+
+
+        if (!targetSection) {
+            return;
+        }
+
+
+        targetSection.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+        });
 
     });
 
 });
-
-
-/* =========================================
-   TOUCH START
-========================================= */
-
-window.addEventListener(
-    "touchstart",
-    (event) => {
-
-        if (window.innerWidth > 768) {
-            return;
-        }
-
-        if (isScrolling) {
-            return;
-        }
-
-        touchStartY = event.touches[0].clientY;
-
-    },
-    { passive: true }
-);
-
-
-/* =========================================
-   TOUCH END
-========================================= */
-
-window.addEventListener(
-    "touchend",
-    (event) => {
-
-        if (window.innerWidth > 768) {
-            return;
-        }
-
-        if (isScrolling) {
-            return;
-        }
-
-        touchEndY = event.changedTouches[0].clientY;
-
-        const difference =
-            touchStartY - touchEndY;
-
-
-        if (Math.abs(difference) < SWIPE_THRESHOLD) {
-            return;
-        }
-
-
-        if (difference > 0) {
-
-            goToSection(
-                currentSection + 1
-            );
-
-        } else {
-
-            goToSection(
-                currentSection - 1
-            );
-
-        }
-
-    },
-    { passive: true }
-);
-
-
-/* =========================================
-   MOUSE WHEEL
-========================================= */
-
-window.addEventListener(
-    "wheel",
-    (event) => {
-
-        if (window.innerWidth <= 768) {
-            return;
-        }
-
-        if (isScrolling) {
-            return;
-        }
-
-        if (Math.abs(event.deltaY) < 10) {
-            return;
-        }
-
-        goToSection(
-            event.deltaY > 0
-                ? currentSection + 1
-                : currentSection - 1
-        );
-
-    },
-    { passive: true }
-);
-
-
-/* =========================================
-   NORMAL SCROLL
-========================================= */
-
-let scrollTimer;
-
-window.addEventListener(
-    "scroll",
-    () => {
-
-        clearTimeout(scrollTimer);
-
-        scrollTimer = setTimeout(() => {
-
-            if (!isScrolling) {
-                updateCurrentSection();
-            }
-
-        }, 80);
-
-    },
-    { passive: true }
-);
 
 
 /* =========================================
@@ -239,17 +123,27 @@ window.addEventListener(
 const aboutPages =
     document.querySelector(".about-pages");
 
-const aboutDots =
-    document.querySelectorAll(".about-dot");
-
 const aboutPrev =
     document.querySelector(".about-prev");
 
 const aboutNext =
     document.querySelector(".about-next");
 
+const aboutDots =
+    Array.from(
+        document.querySelectorAll(".about-dot")
+    );
+
+
 let currentAboutPage = 0;
 
+const totalAboutPages =
+    aboutDots.length;
+
+
+/* =========================================
+   UPDATE ABOUT SLIDER
+========================================= */
 
 function updateAboutSlider() {
 
@@ -257,8 +151,9 @@ function updateAboutSlider() {
         return;
     }
 
+
     aboutPages.style.transform =
-        `translateX(-${currentAboutPage * 50}%)`;
+        `translateX(-${currentAboutPage * 100}%)`;
 
 
     aboutDots.forEach((dot, index) => {
@@ -273,41 +168,8 @@ function updateAboutSlider() {
 }
 
 
-function goToAboutPage(page) {
-
-    if (page < 0 || page > 1) {
-        return;
-    }
-
-    currentAboutPage = page;
-
-    updateAboutSlider();
-
-}
-
-
 /* =========================================
-   ABOUT PREVIOUS
-========================================= */
-
-if (aboutPrev) {
-
-    aboutPrev.addEventListener(
-        "click",
-        () => {
-
-            goToAboutPage(
-                currentAboutPage - 1
-            );
-
-        }
-    );
-
-}
-
-
-/* =========================================
-   ABOUT NEXT
+   NEXT PAGE
 ========================================= */
 
 if (aboutNext) {
@@ -316,9 +178,47 @@ if (aboutNext) {
         "click",
         () => {
 
-            goToAboutPage(
-                currentAboutPage + 1
-            );
+            currentAboutPage++;
+
+            if (
+                currentAboutPage >=
+                totalAboutPages
+            ) {
+
+                currentAboutPage = 0;
+
+            }
+
+
+            updateAboutSlider();
+
+        }
+    );
+
+}
+
+
+/* =========================================
+   PREVIOUS PAGE
+========================================= */
+
+if (aboutPrev) {
+
+    aboutPrev.addEventListener(
+        "click",
+        () => {
+
+            currentAboutPage--;
+
+            if (currentAboutPage < 0) {
+
+                currentAboutPage =
+                    totalAboutPages - 1;
+
+            }
+
+
+            updateAboutSlider();
 
         }
     );
@@ -336,7 +236,9 @@ aboutDots.forEach((dot, index) => {
         "click",
         () => {
 
-            goToAboutPage(index);
+            currentAboutPage = index;
+
+            updateAboutSlider();
 
         }
     );
@@ -345,13 +247,95 @@ aboutDots.forEach((dot, index) => {
 
 
 /* =========================================
-   START
+   INITIALIZE ABOUT
 ========================================= */
 
-updateCurrentSection();
-
 updateAboutSlider();
 
-updateCurrentSection();
 
-updateAboutSlider();
+/* =========================================
+   KEYBOARD CONTROL
+========================================= */
+
+document.addEventListener(
+    "keydown",
+    (event) => {
+
+        /*
+         * About slider:
+         * ← previous
+         * → next
+         */
+
+        if (
+            event.key === "ArrowLeft" &&
+            document.activeElement !== aboutPrev
+        ) {
+
+            if (aboutPrev) {
+                aboutPrev.click();
+            }
+
+        }
+
+
+        if (
+            event.key === "ArrowRight" &&
+            document.activeElement !== aboutNext
+        ) {
+
+            if (aboutNext) {
+                aboutNext.click();
+            }
+
+        }
+
+    }
+);
+
+
+/* =========================================
+   MOBILE TOUCH
+========================================= */
+
+let touchStartY = 0;
+
+let touchEndY = 0;
+
+
+document.addEventListener(
+    "touchstart",
+    (event) => {
+
+        touchStartY =
+            event.changedTouches[0].screenY;
+
+    },
+    { passive: true }
+);
+
+
+document.addEventListener(
+    "touchend",
+    (event) => {
+
+        touchEndY =
+            event.changedTouches[0].screenY;
+
+
+        const difference =
+            touchStartY - touchEndY;
+
+
+        /*
+         * Небольшое движение пальца
+         * не считается свайпом.
+         */
+
+        if (Math.abs(difference) < 70) {
+            return;
+        }
+
+    },
+    { passive: true }
+);

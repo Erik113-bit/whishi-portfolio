@@ -421,6 +421,7 @@ a {
 
 .about-text h2,
 .contact-text h2,
+.channel-content h2,
 .device-text h2 {
     font-size: clamp(45px, 5vw, 72px);
 
@@ -579,7 +580,7 @@ a {
 
 
 /* =========================================
-   PROGRAMMING LANGUAGES
+   PROGRAMMING LANGUAGES / TOOLS
 ========================================= */
 
 .programming-languages {
@@ -693,39 +694,20 @@ a {
 
 
 /* =========================================
-   DESKTOP TOOLS
-========================================= */
-
-.desktop-tools-block {
-    display: block;
-}
-
-.mobile-tools-page {
-    display: none;
-}
-
-
-/* =========================================
    ABOUT NAVIGATION
 ========================================= */
 
 .about-navigation,
-.device-navigation,
-.contact-navigation {
+.device-navigation {
     display: flex;
-
     justify-content: center;
-
     align-items: center;
-
     gap: 18px;
-
-    margin-top: 16px;
+    margin-top: 28px;
 }
 
 .about-arrow,
-.device-arrow,
-.contact-arrow {
+.device-arrow {
     width: 48px;
 
     height: 48px;
@@ -759,8 +741,7 @@ a {
 }
 
 .about-arrow:hover,
-.device-arrow:hover,
-.contact-arrow:hover {
+.device-arrow:hover {
     transform: scale(1.08);
 
     background: #1b1c25;
@@ -769,14 +750,12 @@ a {
 }
 
 .about-arrow:active,
-.device-arrow:active,
-.contact-arrow:active {
+.device-arrow:active {
     transform: scale(0.94);
 }
 
 .about-dots,
-.device-dots,
-.contact-dots {
+.device-dots {
     display: flex;
 
     align-items: center;
@@ -785,8 +764,7 @@ a {
 }
 
 .about-dot,
-.device-dot,
-.contact-dot {
+.device-dot {
     width: 9px;
 
     height: 9px;
@@ -807,8 +785,7 @@ a {
 }
 
 .about-dot.active,
-.device-dot.active,
-.contact-dot.active {
+.device-dot.active {
     width: 42px;
 
     border-radius: 10px;
@@ -875,54 +852,20 @@ a {
     border-bottom: 1px solid rgba(255,255,255,0.1);
 }
 
-.device-card > div:nth-child(3),
-.device-card > div:nth-child(4) {
-    border-bottom: 1px solid rgba(255,255,255,0.1);
+.device-card > div:nth-last-child(-n + 2) {
+    border-bottom: none;
 }
 
 
 /* =========================================
-   CONTACT / CHANNELS
+   CONTACT
 ========================================= */
 
-.contact-section {
-    overflow: hidden;
-}
-
-.contact-slider {
-    width: 100%;
-
-    overflow: hidden;
-}
-
-.contact-pages {
-    width: 100%;
-
-    display: flex;
-
-    transition:
-        transform 0.6s cubic-bezier(0.77, 0, 0.175, 1);
-
-    will-change: transform;
-}
-
-.contact-page {
-    min-width: 100%;
-
-    flex: 0 0 100%;
-
-    padding-right: 20px;
-}
-
-.contact-page:last-child {
-    padding-right: 0;
-}
-
-.contact-page .contact-text {
+.contact-content {
     max-width: 800px;
 }
 
-.contact-page .contact-text > p:not(.small-title) {
+.contact-text > p:not(.small-title) {
     color: #92939d;
 
     font-size: 18px;
@@ -932,7 +875,58 @@ a {
     margin-bottom: 30px;
 }
 
-.contact-links,
+.contact-links {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 12px;
+}
+
+.contact-links a {
+    padding: 14px 20px;
+
+    border: 1px solid #2b2d37;
+
+    border-radius: 14px;
+
+    background: #11121a;
+
+    color: #eeeeF1;
+
+    transition:
+        transform 0.3s ease,
+        background 0.3s ease,
+        border-color 0.3s ease;
+}
+
+.contact-links a:hover {
+    transform: translateY(-4px);
+
+    background: #1a1b24;
+
+    border-color: #4b4d59;
+}
+
+
+/* =========================================
+   CHANNELS
+========================================= */
+
+.channel-content {
+    max-width: 800px;
+}
+
+.channel-content > p:not(.small-title) {
+    color: #92939d;
+
+    font-size: 18px;
+
+    line-height: 1.7;
+
+    margin-bottom: 30px;
+}
+
 .channel-links {
     display: flex;
 
@@ -941,7 +935,6 @@ a {
     gap: 12px;
 }
 
-.contact-links a,
 .channel-links a {
     padding: 14px 20px;
 
@@ -959,7 +952,6 @@ a {
         border-color 0.3s ease;
 }
 
-.contact-links a:hover,
 .channel-links a:hover {
     transform: translateY(-4px);
 
@@ -1222,6 +1214,7 @@ footer p {
 
     .about-text h2,
     .contact-text h2,
+    .channel-content h2,
     .device-text h2 {
         font-size: 39px;
 
@@ -1342,15 +1335,13 @@ footer p {
     }
 
     .programming-language {
-        min-height: 47px;
+        min-height: 44px;
 
         padding: 0 14px;
 
         border-radius: 13px;
 
         font-size: 14px;
-
-        min-width: 0;
     }
 
     .language-icon {
@@ -1387,34 +1378,17 @@ footer p {
     }
 
 
-    /* THIRD ABOUT PAGE */
-
-    .desktop-tools-block {
-        display: none;
-    }
-
-    .mobile-tools-page {
-        display: block;
-    }
-
-    .tools-block {
-        width: 100%;
-    }
-
-
     /* ABOUT NAVIGATION */
 
     .about-navigation,
-    .device-navigation,
-    .contact-navigation {
-        margin-top: 10px;
+    .device-navigation {
+        margin-top: -8px;
 
         gap: 12px;
     }
 
     .about-arrow,
-    .device-arrow,
-    .contact-arrow {
+    .device-arrow {
         width: 42px;
 
         height: 42px;
@@ -1423,16 +1397,14 @@ footer p {
     }
 
     .about-dot,
-    .device-dot,
-    .contact-dot {
+    .device-dot {
         width: 8px;
 
         height: 8px;
     }
 
     .about-dot.active,
-    .device-dot.active,
-    .contact-dot.active {
+    .device-dot.active {
         width: 35px;
     }
 
@@ -1482,19 +1454,13 @@ footer p {
 
     /* CONTACT / CHANNELS */
 
-    .contact-section {
-        padding-top: 95px;
-    }
-
-    .contact-page {
-        padding-right: 0;
-    }
-
-    .contact-page .contact-text {
+    .contact-content,
+    .channel-content {
         width: 100%;
     }
 
-    .contact-page .contact-text > p:not(.small-title) {
+    .contact-text > p:not(.small-title),
+    .channel-content > p:not(.small-title) {
         font-size: 16px;
 
         line-height: 1.6;
@@ -1502,8 +1468,8 @@ footer p {
         margin-bottom: 20px;
     }
 
-    .contact-page .contact-links,
-    .contact-page .channel-links {
+    .contact-links,
+    .channel-links {
         display: flex;
 
         flex-direction: column;
@@ -1511,8 +1477,8 @@ footer p {
         gap: 9px;
     }
 
-    .contact-page .contact-links a,
-    .contact-page .channel-links a {
+    .contact-links a,
+    .channel-links a {
         width: 100%;
 
         padding: 13px 16px;
@@ -1522,30 +1488,6 @@ footer p {
         font-size: 14px;
 
         text-align: center;
-    }
-
-    .contact-navigation {
-        margin-top: 10px;
-
-        gap: 12px;
-    }
-
-    .contact-arrow {
-        width: 42px;
-
-        height: 42px;
-
-        font-size: 21px;
-    }
-
-    .contact-dot {
-        width: 8px;
-
-        height: 8px;
-    }
-
-    .contact-dot.active {
-        width: 35px;
     }
 
 
@@ -1621,6 +1563,7 @@ footer p {
 
     .about-text h2,
     .contact-text h2,
+    .channel-content h2,
     .device-text h2 {
         font-size: 35px;
     }
@@ -1664,7 +1607,7 @@ footer p {
     }
 
     .programming-language {
-        min-height: 44px;
+        min-height: 42px;
 
         font-size: 13px;
     }
@@ -1682,7 +1625,8 @@ footer p {
 
 .hero *,
 .about-page *,
-.contact-page *,
+.contact-content *,
+.channel-content *,
 .device-page * {
     word-break: normal;
 

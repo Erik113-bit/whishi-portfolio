@@ -81,11 +81,7 @@ let currentAboutPage = 0;
 
 
 function getAboutPageCount() {
-
-    return window.innerWidth <= 768
-        ? 3
-        : 2;
-
+    return 3;
 }
 
 

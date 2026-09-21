@@ -421,7 +421,6 @@ a {
 
 .about-text h2,
 .contact-text h2,
-.channel-content h2,
 .device-text h2 {
     font-size: clamp(45px, 5vw, 72px);
 
@@ -697,31 +696,9 @@ a {
    DESKTOP TOOLS
 ========================================= */
 
-.desktop-tools {
-    margin-top: 12px;
+.desktop-tools-block {
+    display: block;
 }
-
-.desktop-tools .programming-languages {
-    display: grid;
-
-    grid-template-columns:
-        repeat(4, 1fr);
-
-    gap: 10px;
-}
-
-.desktop-tools .programming-language {
-    justify-content: center;
-
-    text-align: center;
-
-    min-height: 48px;
-}
-
-
-/* =========================================
-   MOBILE TOOLS DEFAULT
-========================================= */
 
 .mobile-tools-page {
     display: none;
@@ -733,7 +710,8 @@ a {
 ========================================= */
 
 .about-navigation,
-.device-navigation {
+.device-navigation,
+.contact-navigation {
     display: flex;
 
     justify-content: center;
@@ -746,7 +724,8 @@ a {
 }
 
 .about-arrow,
-.device-arrow {
+.device-arrow,
+.contact-arrow {
     width: 48px;
 
     height: 48px;
@@ -780,7 +759,8 @@ a {
 }
 
 .about-arrow:hover,
-.device-arrow:hover {
+.device-arrow:hover,
+.contact-arrow:hover {
     transform: scale(1.08);
 
     background: #1b1c25;
@@ -789,12 +769,14 @@ a {
 }
 
 .about-arrow:active,
-.device-arrow:active {
+.device-arrow:active,
+.contact-arrow:active {
     transform: scale(0.94);
 }
 
 .about-dots,
-.device-dots {
+.device-dots,
+.contact-dots {
     display: flex;
 
     align-items: center;
@@ -803,7 +785,8 @@ a {
 }
 
 .about-dot,
-.device-dot {
+.device-dot,
+.contact-dot {
     width: 9px;
 
     height: 9px;
@@ -824,7 +807,8 @@ a {
 }
 
 .about-dot.active,
-.device-dot.active {
+.device-dot.active,
+.contact-dot.active {
     width: 42px;
 
     border-radius: 10px;
@@ -891,72 +875,54 @@ a {
     border-bottom: 1px solid rgba(255,255,255,0.1);
 }
 
-.device-card > div:nth-last-child(-n + 2) {
+.device-card > div:nth-child(3),
+.device-card > div:nth-child(4) {
     border-bottom: 1px solid rgba(255,255,255,0.1);
 }
 
 
 /* =========================================
-   CONTACT
+   CONTACT / CHANNELS
 ========================================= */
 
-.contact-content {
-    max-width: 800px;
+.contact-section {
+    overflow: hidden;
 }
 
-.contact-text > p:not(.small-title) {
-    color: #92939d;
+.contact-slider {
+    width: 100%;
 
-    font-size: 18px;
-
-    line-height: 1.7;
-
-    margin-bottom: 30px;
+    overflow: hidden;
 }
 
-.contact-links {
+.contact-pages {
+    width: 100%;
+
     display: flex;
 
-    flex-wrap: wrap;
-
-    gap: 12px;
-}
-
-.contact-links a {
-    padding: 14px 20px;
-
-    border: 1px solid #2b2d37;
-
-    border-radius: 14px;
-
-    background: #11121a;
-
-    color: #eeeeF1;
-
     transition:
-        transform 0.3s ease,
-        background 0.3s ease,
-        border-color 0.3s ease;
+        transform 0.6s cubic-bezier(0.77, 0, 0.175, 1);
+
+    will-change: transform;
 }
 
-.contact-links a:hover {
-    transform: translateY(-4px);
+.contact-page {
+    min-width: 100%;
 
-    background: #1a1b24;
+    flex: 0 0 100%;
 
-    border-color: #4b4d59;
+    padding-right: 20px;
 }
 
+.contact-page:last-child {
+    padding-right: 0;
+}
 
-/* =========================================
-   CHANNELS
-========================================= */
-
-.channel-content {
+.contact-page .contact-text {
     max-width: 800px;
 }
 
-.channel-content > p:not(.small-title) {
+.contact-page .contact-text > p:not(.small-title) {
     color: #92939d;
 
     font-size: 18px;
@@ -966,6 +932,7 @@ a {
     margin-bottom: 30px;
 }
 
+.contact-links,
 .channel-links {
     display: flex;
 
@@ -974,6 +941,7 @@ a {
     gap: 12px;
 }
 
+.contact-links a,
 .channel-links a {
     padding: 14px 20px;
 
@@ -991,6 +959,7 @@ a {
         border-color 0.3s ease;
 }
 
+.contact-links a:hover,
 .channel-links a:hover {
     transform: translateY(-4px);
 
@@ -1079,11 +1048,6 @@ footer p {
     }
 
     .about-card {
-        grid-template-columns:
-            repeat(2, 1fr);
-    }
-
-    .desktop-tools .programming-languages {
         grid-template-columns:
             repeat(2, 1fr);
     }
@@ -1258,7 +1222,6 @@ footer p {
 
     .about-text h2,
     .contact-text h2,
-    .channel-content h2,
     .device-text h2 {
         font-size: 39px;
 
@@ -1386,6 +1349,8 @@ footer p {
         border-radius: 13px;
 
         font-size: 14px;
+
+        min-width: 0;
     }
 
     .language-icon {
@@ -1422,14 +1387,11 @@ footer p {
     }
 
 
-    /* DESKTOP TOOLS HIDDEN ON MOBILE */
+    /* THIRD ABOUT PAGE */
 
-    .desktop-tools {
+    .desktop-tools-block {
         display: none;
     }
-
-
-    /* THIRD ABOUT PAGE */
 
     .mobile-tools-page {
         display: block;
@@ -1439,39 +1401,20 @@ footer p {
         width: 100%;
     }
 
-    .tools-block .programming-languages {
-        display: grid;
-
-        grid-template-columns:
-            repeat(2, 1fr);
-
-        gap: 8px;
-    }
-
-    .tools-block .programming-language {
-        min-height: 42px;
-
-        padding: 0 12px;
-
-        justify-content: center;
-
-        text-align: center;
-
-        font-size: 13px;
-    }
-
 
     /* ABOUT NAVIGATION */
 
     .about-navigation,
-    .device-navigation {
+    .device-navigation,
+    .contact-navigation {
         margin-top: 10px;
 
         gap: 12px;
     }
 
     .about-arrow,
-    .device-arrow {
+    .device-arrow,
+    .contact-arrow {
         width: 42px;
 
         height: 42px;
@@ -1480,14 +1423,16 @@ footer p {
     }
 
     .about-dot,
-    .device-dot {
+    .device-dot,
+    .contact-dot {
         width: 8px;
 
         height: 8px;
     }
 
     .about-dot.active,
-    .device-dot.active {
+    .device-dot.active,
+    .contact-dot.active {
         width: 35px;
     }
 
@@ -1537,13 +1482,19 @@ footer p {
 
     /* CONTACT / CHANNELS */
 
-    .contact-content,
-    .channel-content {
+    .contact-section {
+        padding-top: 95px;
+    }
+
+    .contact-page {
+        padding-right: 0;
+    }
+
+    .contact-page .contact-text {
         width: 100%;
     }
 
-    .contact-text > p:not(.small-title),
-    .channel-content > p:not(.small-title) {
+    .contact-page .contact-text > p:not(.small-title) {
         font-size: 16px;
 
         line-height: 1.6;
@@ -1551,8 +1502,8 @@ footer p {
         margin-bottom: 20px;
     }
 
-    .contact-links,
-    .channel-links {
+    .contact-page .contact-links,
+    .contact-page .channel-links {
         display: flex;
 
         flex-direction: column;
@@ -1560,8 +1511,8 @@ footer p {
         gap: 9px;
     }
 
-    .contact-links a,
-    .channel-links a {
+    .contact-page .contact-links a,
+    .contact-page .channel-links a {
         width: 100%;
 
         padding: 13px 16px;
@@ -1571,6 +1522,30 @@ footer p {
         font-size: 14px;
 
         text-align: center;
+    }
+
+    .contact-navigation {
+        margin-top: 10px;
+
+        gap: 12px;
+    }
+
+    .contact-arrow {
+        width: 42px;
+
+        height: 42px;
+
+        font-size: 21px;
+    }
+
+    .contact-dot {
+        width: 8px;
+
+        height: 8px;
+    }
+
+    .contact-dot.active {
+        width: 35px;
     }
 
 
@@ -1646,7 +1621,6 @@ footer p {
 
     .about-text h2,
     .contact-text h2,
-    .channel-content h2,
     .device-text h2 {
         font-size: 35px;
     }
@@ -1699,14 +1673,6 @@ footer p {
         font-size: 11px;
     }
 
-    .tools-block .programming-language {
-        min-height: 39px;
-
-        padding: 0 8px;
-
-        font-size: 12px;
-    }
-
 }
 
 
@@ -1716,8 +1682,7 @@ footer p {
 
 .hero *,
 .about-page *,
-.contact-content *,
-.channel-content *,
+.contact-page *,
 .device-page * {
     word-break: normal;
 

@@ -6,111 +6,57 @@ const sections = Array.from(
     document.querySelectorAll(".section")
 );
 
-const sectionDots = Array.from(
+const dots = Array.from(
     document.querySelectorAll(".side-navigation .dot")
 );
 
-let currentSection = 0;
 
+function updateSectionNavigation() {
 
-/* =========================================
-   ACTIVE SECTION
-========================================= */
-
-function updateActiveSection() {
+    if (!sections.length) return;
 
     const scrollPosition =
         window.scrollY + window.innerHeight / 2;
 
-    let closestSection = 0;
-
-    let closestDistance = Infinity;
-
+    let activeIndex = 0;
 
     sections.forEach((section, index) => {
 
-        const sectionTop =
-            section.offsetTop;
+        const top = section.offsetTop;
+        const bottom = top + section.offsetHeight;
 
-        const sectionHeight =
-            section.offsetHeight;
-
-        const sectionCenter =
-            sectionTop + sectionHeight / 2;
-
-        const distance =
-            Math.abs(
-                scrollPosition - sectionCenter
-            );
-
-
-        if (distance < closestDistance) {
-
-            closestDistance = distance;
-
-            closestSection = index;
-
+        if (
+            scrollPosition >= top &&
+            scrollPosition < bottom
+        ) {
+            activeIndex = index;
         }
 
     });
 
-
-    currentSection = closestSection;
-
-
-    sectionDots.forEach((dot, index) => {
+    dots.forEach((dot, index) => {
 
         dot.classList.toggle(
             "active",
-            index === currentSection
+            index === activeIndex
         );
 
     });
-
 }
 
 
-/* =========================================
-   SCROLL
-========================================= */
-
 window.addEventListener(
     "scroll",
-    updateActiveSection,
+    updateSectionNavigation,
     { passive: true }
 );
 
+window.addEventListener(
+    "resize",
+    updateSectionNavigation
+);
 
-/* =========================================
-   SECTION DOTS
-========================================= */
-
-sectionDots.forEach((dot, index) => {
-
-    dot.addEventListener(
-        "click",
-        (event) => {
-
-            event.preventDefault();
-
-            const targetSection =
-                sections[index];
-
-
-            if (!targetSection) {
-                return;
-            }
-
-
-            targetSection.scrollIntoView({
-                behavior: "smooth",
-                block: "start"
-            });
-
-        }
-    );
-
-});
+updateSectionNavigation();
 
 
 /* =========================================
@@ -120,9 +66,9 @@ sectionDots.forEach((dot, index) => {
 const aboutPages =
     document.querySelector(".about-pages");
 
-const aboutPageElements =
+const aboutDots =
     Array.from(
-        document.querySelectorAll(".about-page")
+        document.querySelectorAll(".about-dot")
     );
 
 const aboutPrev =
@@ -131,65 +77,44 @@ const aboutPrev =
 const aboutNext =
     document.querySelector(".about-next");
 
-const aboutDots =
-    Array.from(
-        document.querySelectorAll(".about-dot")
-    );
-
-
 let currentAboutPage = 0;
 
 
-/* =========================================
-   ABOUT PAGE COUNT
-========================================= */
-
 function getAboutPageCount() {
 
-    /*
-     * Телефон:
-     * 1 — Обо мне
-     * 2 — Мой стек
-     * 3 — Инструменты
-     *
-     * ПК:
-     * 1 — Обо мне
-     * 2 — Мой стек
-     */
-
-    if (window.innerWidth <= 768) {
-
-        return 3;
-
-    }
-
-    return 2;
+    return window.innerWidth <= 768
+        ? 3
+        : 2;
 
 }
 
 
-/* =========================================
-   UPDATE ABOUT DOTS
-========================================= */
+function updateAboutSlider() {
 
-function updateAboutDots() {
+    if (!aboutPages) return;
 
     const pageCount =
         getAboutPageCount();
 
 
+    if (currentAboutPage >= pageCount) {
+
+        currentAboutPage =
+            pageCount - 1;
+
+    }
+
+
+    aboutPages.style.transform =
+        `translateX(-${currentAboutPage * 100}%)`;
+
+
     aboutDots.forEach((dot, index) => {
 
-        if (index < pageCount) {
-
-            dot.style.display = "block";
-
-        } else {
-
-            dot.style.display = "none";
-
-        }
-
+        dot.style.display =
+            index < pageCount
+                ? ""
+                : "none";
 
         dot.classList.toggle(
             "active",
@@ -201,193 +126,73 @@ function updateAboutDots() {
 }
 
 
-/* =========================================
-   UPDATE ABOUT SLIDER
-========================================= */
-
-function updateAboutSlider() {
-
-    if (!aboutPages) {
-        return;
-    }
-
-
-    const pageCount =
-        getAboutPageCount();
-
-
-    /*
-     * Защита от выхода
-     * за пределы страниц.
-     */
-
-    if (currentAboutPage < 0) {
-
-        currentAboutPage =
-            pageCount - 1;
-
-    }
-
-
-    if (currentAboutPage >= pageCount) {
-
-        currentAboutPage = 0;
-
-    }
-
-
-    /*
-     * Двигаем именно весь контейнер.
-     */
-
-    const offset =
-        currentAboutPage * 100;
-
-
-    aboutPages.style.transform =
-        `translate3d(-${offset}%, 0, 0)`;
-
-
-    updateAboutDots();
-
-}
-
-
-/* =========================================
-   NEXT ABOUT PAGE
-========================================= */
-
-if (aboutNext) {
-
-    aboutNext.addEventListener(
-        "click",
-        () => {
-
-            const pageCount =
-                getAboutPageCount();
-
-
-            currentAboutPage++;
-
-
-            if (
-                currentAboutPage >=
-                pageCount
-            ) {
-
-                currentAboutPage = 0;
-
-            }
-
-
-            updateAboutSlider();
-
-        }
-    );
-
-}
-
-
-/* =========================================
-   PREVIOUS ABOUT PAGE
-========================================= */
-
-if (aboutPrev) {
-
-    aboutPrev.addEventListener(
-        "click",
-        () => {
-
-            const pageCount =
-                getAboutPageCount();
-
-
-            currentAboutPage--;
-
-
-            if (currentAboutPage < 0) {
-
-                currentAboutPage =
-                    pageCount - 1;
-
-            }
-
-
-            updateAboutSlider();
-
-        }
-    );
-
-}
-
-
-/* =========================================
-   ABOUT DOTS
-========================================= */
-
-aboutDots.forEach(
-    (dot, index) => {
-
-        dot.addEventListener(
-            "click",
-            () => {
-
-                const pageCount =
-                    getAboutPageCount();
-
-
-                if (index >= pageCount) {
-                    return;
-                }
-
-
-                currentAboutPage =
-                    index;
-
-
-                updateAboutSlider();
-
-            }
-        );
-
-    }
-);
-
-
-/* =========================================
-   RESIZE
-========================================= */
-
-window.addEventListener(
-    "resize",
+aboutPrev?.addEventListener(
+    "click",
     () => {
 
-        const pageCount =
-            getAboutPageCount();
+        currentAboutPage--;
 
-
-        if (
-            currentAboutPage >=
-            pageCount
-        ) {
+        if (currentAboutPage < 0) {
 
             currentAboutPage =
-                pageCount - 1;
+                getAboutPageCount() - 1;
 
         }
-
 
         updateAboutSlider();
 
-        updateActiveSection();
+    }
+);
+
+
+aboutNext?.addEventListener(
+    "click",
+    () => {
+
+        currentAboutPage++;
+
+        if (
+            currentAboutPage >=
+            getAboutPageCount()
+        ) {
+
+            currentAboutPage = 0;
+
+        }
+
+        updateAboutSlider();
 
     }
 );
 
 
-/* =========================================
-   INITIAL ABOUT
-========================================= */
+aboutDots.forEach((dot, index) => {
+
+    dot.addEventListener(
+        "click",
+        () => {
+
+            if (
+                index >=
+                getAboutPageCount()
+            ) {
+                return;
+            }
+
+            currentAboutPage = index;
+
+            updateAboutSlider();
+
+        }
+    );
+
+});
+
+
+window.addEventListener(
+    "resize",
+    updateAboutSlider
+);
 
 updateAboutSlider();
 
@@ -399,197 +204,257 @@ updateAboutSlider();
 const devicesPages =
     document.querySelector(".devices-pages");
 
+const deviceDots =
+    Array.from(
+        document.querySelectorAll(".device-dot")
+    );
+
 const devicePrev =
     document.querySelector(".device-prev");
 
 const deviceNext =
     document.querySelector(".device-next");
 
-const deviceDots =
-    Array.from(
-        document.querySelectorAll(".device-dot")
-    );
-
-
 let currentDevicePage = 0;
 
-const totalDevicePages =
-    deviceDots.length;
-
-
-/* =========================================
-   UPDATE DEVICE SLIDER
-========================================= */
 
 function updateDeviceSlider() {
 
-    if (!devicesPages) {
-        return;
-    }
-
+    if (!devicesPages) return;
 
     devicesPages.style.transform =
-        `translate3d(-${currentDevicePage * 100}%, 0, 0)`;
+        `translateX(-${currentDevicePage * 100}%)`;
 
 
-    deviceDots.forEach(
-        (dot, index) => {
+    deviceDots.forEach((dot, index) => {
 
-            dot.classList.toggle(
-                "active",
-                index === currentDevicePage
-            );
-
-        }
-    );
-
-}
-
-
-/* =========================================
-   NEXT DEVICE
-========================================= */
-
-if (deviceNext) {
-
-    deviceNext.addEventListener(
-        "click",
-        () => {
-
-            currentDevicePage++;
-
-
-            if (
-                currentDevicePage >=
-                totalDevicePages
-            ) {
-
-                currentDevicePage = 0;
-
-            }
-
-
-            updateDeviceSlider();
-
-        }
-    );
-
-}
-
-
-/* =========================================
-   PREVIOUS DEVICE
-========================================= */
-
-if (devicePrev) {
-
-    devicePrev.addEventListener(
-        "click",
-        () => {
-
-            currentDevicePage--;
-
-
-            if (currentDevicePage < 0) {
-
-                currentDevicePage =
-                    totalDevicePages - 1;
-
-            }
-
-
-            updateDeviceSlider();
-
-        }
-    );
-
-}
-
-
-/* =========================================
-   DEVICE DOTS
-========================================= */
-
-deviceDots.forEach(
-    (dot, index) => {
-
-        dot.addEventListener(
-            "click",
-            () => {
-
-                currentDevicePage =
-                    index;
-
-                updateDeviceSlider();
-
-            }
+        dot.classList.toggle(
+            "active",
+            index === currentDevicePage
         );
+
+    });
+
+}
+
+
+devicePrev?.addEventListener(
+    "click",
+    () => {
+
+        currentDevicePage--;
+
+        if (currentDevicePage < 0) {
+
+            currentDevicePage = 1;
+
+        }
+
+        updateDeviceSlider();
 
     }
 );
 
 
-/* =========================================
-   INITIAL DEVICE SLIDER
-========================================= */
+deviceNext?.addEventListener(
+    "click",
+    () => {
+
+        currentDevicePage++;
+
+        if (currentDevicePage > 1) {
+
+            currentDevicePage = 0;
+
+        }
+
+        updateDeviceSlider();
+
+    }
+);
+
+
+deviceDots.forEach((dot, index) => {
+
+    dot.addEventListener(
+        "click",
+        () => {
+
+            currentDevicePage = index;
+
+            updateDeviceSlider();
+
+        }
+    );
+
+});
+
 
 updateDeviceSlider();
 
 
 /* =========================================
-   KEYBOARD CONTROL
+   CONTACT / CHANNELS SLIDER
+========================================= */
+
+const contactPages =
+    document.querySelector(".contact-pages");
+
+const contactDots =
+    Array.from(
+        document.querySelectorAll(".contact-dot")
+    );
+
+const contactPrev =
+    document.querySelector(".contact-prev");
+
+const contactNext =
+    document.querySelector(".contact-next");
+
+let currentContactPage = 0;
+
+
+function updateContactSlider() {
+
+    if (!contactPages) return;
+
+    contactPages.style.transform =
+        `translateX(-${currentContactPage * 100}%)`;
+
+
+    contactDots.forEach((dot, index) => {
+
+        dot.classList.toggle(
+            "active",
+            index === currentContactPage
+        );
+
+    });
+
+}
+
+
+contactPrev?.addEventListener(
+    "click",
+    () => {
+
+        currentContactPage--;
+
+        if (currentContactPage < 0) {
+
+            currentContactPage = 1;
+
+        }
+
+        updateContactSlider();
+
+    }
+);
+
+
+contactNext?.addEventListener(
+    "click",
+    () => {
+
+        currentContactPage++;
+
+        if (currentContactPage > 1) {
+
+            currentContactPage = 0;
+
+        }
+
+        updateContactSlider();
+
+    }
+);
+
+
+contactDots.forEach((dot, index) => {
+
+    dot.addEventListener(
+        "click",
+        () => {
+
+            currentContactPage = index;
+
+            updateContactSlider();
+
+        }
+    );
+
+});
+
+
+updateContactSlider();
+
+
+/* =========================================
+   KEYBOARD NAVIGATION
 ========================================= */
 
 document.addEventListener(
     "keydown",
     (event) => {
 
-        /*
-         * Стрелки переключают About,
-         * только когда About находится
-         * в центре экрана.
-         */
-
-        const aboutSection =
-            document.getElementById("about");
-
-
-        if (!aboutSection) {
-            return;
-        }
-
-
-        const rect =
-            aboutSection.getBoundingClientRect();
-
-
-        const aboutIsVisible =
-            rect.top < window.innerHeight &&
-            rect.bottom > 0;
-
-
-        if (!aboutIsVisible) {
-            return;
-        }
-
+        const activeElement =
+            document.activeElement;
 
         if (
-            event.key === "ArrowLeft"
+            activeElement &&
+            (
+                activeElement.tagName === "INPUT" ||
+                activeElement.tagName === "TEXTAREA" ||
+                activeElement.tagName === "BUTTON"
+            )
         ) {
+            return;
+        }
 
-            if (aboutPrev) {
-                aboutPrev.click();
+
+        if (event.key === "ArrowLeft") {
+
+            if (
+                document.activeElement ===
+                document.body
+            ) {
+
+                currentAboutPage--;
+
+                if (currentAboutPage < 0) {
+
+                    currentAboutPage =
+                        getAboutPageCount() - 1;
+
+                }
+
+                updateAboutSlider();
+
             }
 
         }
 
 
-        if (
-            event.key === "ArrowRight"
-        ) {
+        if (event.key === "ArrowRight") {
 
-            if (aboutNext) {
-                aboutNext.click();
+            if (
+                document.activeElement ===
+                document.body
+            ) {
+
+                currentAboutPage++;
+
+                if (
+                    currentAboutPage >=
+                    getAboutPageCount()
+                ) {
+
+                    currentAboutPage = 0;
+
+                }
+
+                updateAboutSlider();
+
             }
 
         }
@@ -603,18 +468,17 @@ document.addEventListener(
 ========================================= */
 
 const moscowTime =
-    document.getElementById("moscow-time");
+    document.getElementById(
+        "moscow-time"
+    );
 
 
 function updateMoscowTime() {
 
-    if (!moscowTime) {
-        return;
-    }
+    if (!moscowTime) return;
 
 
-    const now =
-        new Date();
+    const now = new Date();
 
 
     const time =
@@ -624,9 +488,7 @@ function updateMoscowTime() {
                 timeZone: "Europe/Moscow",
 
                 hour: "2-digit",
-
                 minute: "2-digit",
-
                 second: "2-digit",
 
                 hour12: false
@@ -641,7 +503,6 @@ function updateMoscowTime() {
 
 
 updateMoscowTime();
-
 
 setInterval(
     updateMoscowTime,

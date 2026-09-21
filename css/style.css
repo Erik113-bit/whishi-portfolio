@@ -694,6 +694,41 @@ a {
 
 
 /* =========================================
+   DESKTOP TOOLS
+========================================= */
+
+.desktop-tools {
+    margin-top: 12px;
+}
+
+.desktop-tools .programming-languages {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 10px;
+}
+
+.desktop-tools .programming-language {
+    justify-content: center;
+
+    text-align: center;
+
+    min-height: 48px;
+}
+
+
+/* =========================================
+   MOBILE TOOLS DEFAULT
+========================================= */
+
+.mobile-tools-page {
+    display: none;
+}
+
+
+/* =========================================
    ABOUT NAVIGATION
 ========================================= */
 
@@ -799,15 +834,6 @@ a {
 
 
 /* =========================================
-   DESKTOP ABOUT
-========================================= */
-
-.mobile-tools-page {
-    display: none;
-}
-
-
-/* =========================================
    DEVICES
 ========================================= */
 
@@ -866,7 +892,7 @@ a {
 }
 
 .device-card > div:nth-last-child(-n + 2) {
-    border-bottom: none;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
 }
 
 
@@ -1053,6 +1079,11 @@ footer p {
     }
 
     .about-card {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+    .desktop-tools .programming-languages {
         grid-template-columns:
             repeat(2, 1fr);
     }
@@ -1391,6 +1422,13 @@ footer p {
     }
 
 
+    /* DESKTOP TOOLS HIDDEN ON MOBILE */
+
+    .desktop-tools {
+        display: none;
+    }
+
+
     /* THIRD ABOUT PAGE */
 
     .mobile-tools-page {
@@ -1402,18 +1440,25 @@ footer p {
     }
 
     .tools-block .programming-languages {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 8px;
-}
+        display: grid;
 
-.tools-block .programming-language {
-    min-height: 42px;
-    padding: 0 12px;
-    justify-content: center;
-    text-align: center;
-    font-size: 13px;
-}
+        grid-template-columns:
+            repeat(2, 1fr);
+
+        gap: 8px;
+    }
+
+    .tools-block .programming-language {
+        min-height: 42px;
+
+        padding: 0 12px;
+
+        justify-content: center;
+
+        text-align: center;
+
+        font-size: 13px;
+    }
 
 
     /* ABOUT NAVIGATION */
@@ -1575,12 +1620,6 @@ footer p {
             40px;
     }
 
-    .tools-block .programming-language {
-        min-height: 39px;
-        padding: 0 8px;
-        font-size: 12px;
-    }
-
     .hero {
         padding-top: 75px;
 
@@ -1658,6 +1697,14 @@ footer p {
 
     .favorite-language strong {
         font-size: 11px;
+    }
+
+    .tools-block .programming-language {
+        min-height: 39px;
+
+        padding: 0 8px;
+
+        font-size: 12px;
     }
 
 }

@@ -1382,8 +1382,7 @@ footer p {
 
     .about-navigation,
     .device-navigation {
-        margin-top: -8px;
-
+        margin-top: 20px;
         gap: 12px;
     }
 

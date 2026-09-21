@@ -1401,6 +1401,20 @@ footer p {
         width: 100%;
     }
 
+    .tools-block .programming-languages {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+}
+
+.tools-block .programming-language {
+    min-height: 42px;
+    padding: 0 12px;
+    justify-content: center;
+    text-align: center;
+    font-size: 13px;
+}
+
 
     /* ABOUT NAVIGATION */
 
@@ -1559,6 +1573,12 @@ footer p {
             90px
             22px
             40px;
+    }
+
+    .tools-block .programming-language {
+        min-height: 39px;
+        padding: 0 8px;
+        font-size: 12px;
     }
 
     .hero {

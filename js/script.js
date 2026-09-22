@@ -143,7 +143,7 @@
 
 
         /* =================================================
-           UI
+           UPDATE UI
         ================================================== */
 
         function updateUI() {
@@ -252,7 +252,7 @@
 
 
         /* =================================================
-           BUTTONS
+           PREVIOUS
         ================================================== */
 
         previousButton?.addEventListener(
@@ -278,6 +278,10 @@
             }
         );
 
+
+        /* =================================================
+           NEXT
+        ================================================== */
 
         nextButton?.addEventListener(
             "click",
@@ -346,14 +350,13 @@
 
         /* =================================================
            POINTER DRAG
-           Works on:
-           - mouse / PC
-           - touch / phone
-           - stylus
         ================================================== */
 
-        let pointerStartX = 0;
-        let pointerStartY = 0;
+        let pointerStartX =
+            0;
+
+        let pointerStartY =
+            0;
 
         let pointerActive =
             false;
@@ -366,10 +369,6 @@
             "pointerdown",
             (event) => {
 
-                /*
-                 * Left mouse only.
-                 */
-
                 if (
                     event.pointerType ===
                     "mouse" &&
@@ -380,11 +379,6 @@
 
                 }
 
-
-                /*
-                 * Do not start drag
-                 * directly on controls.
-                 */
 
                 if (
                     event.target.closest(
@@ -407,6 +401,7 @@
 
                 pointerActive =
                     true;
+
 
                 pointerDragged =
                     false;
@@ -448,11 +443,6 @@
                     pointerStartY;
 
 
-                /*
-                 * We only care about horizontal
-                 * movement.
-                 */
-
                 if (
                     !pointerDragged &&
                     Math.abs(deltaX) > 10 &&
@@ -465,11 +455,6 @@
 
                 }
 
-
-                /*
-                 * While dragging horizontally,
-                 * prevent accidental selection.
-                 */
 
                 if (
                     pointerDragged
@@ -526,19 +511,14 @@
                 Math.abs(deltaX) >= 55;
 
 
-            /*
-             * Horizontal drag:
-             *
-             * LEFT  -> NEXT
-             * RIGHT -> PREVIOUS
-             */
-
             if (
                 horizontal &&
                 enough
             ) {
 
-                if (deltaX < 0) {
+                if (
+                    deltaX < 0
+                ) {
 
                     goTo(
                         currentIndex + 1
@@ -554,10 +534,6 @@
 
             }
 
-
-            /*
-             * Give pointer back to browser.
-             */
 
             try {
 
@@ -591,6 +567,7 @@
                 pointerActive =
                     false;
 
+
                 viewport.classList.remove(
                     "is-dragging"
                 );
@@ -598,11 +575,6 @@
             }
         );
 
-
-        /*
-         * Prevent image dragging from
-         * fighting with our slider.
-         */
 
         viewport?.addEventListener(
             "dragstart",
@@ -615,7 +587,7 @@
 
 
         /* =================================================
-           INIT
+           INITIAL RENDER
         ================================================== */
 
         updateUI();
@@ -645,7 +617,7 @@
 
 
     /* =====================================================
-       SLIDERS
+       ABOUT
     ====================================================== */
 
     const aboutSlider =
@@ -663,6 +635,10 @@
         });
 
 
+    /* =====================================================
+       DEVICES
+    ====================================================== */
+
     createSlider({
 
         trackSelector:
@@ -676,6 +652,10 @@
 
     });
 
+
+    /* =====================================================
+       CONTACT
+    ====================================================== */
 
     createSlider({
 
@@ -709,8 +689,12 @@
                 tagName === "SELECT";
 
 
-            if (isTyping) {
+            if (
+                isTyping
+            ) {
+
                 return;
+
             }
 
 
@@ -797,8 +781,12 @@
                         sections[index];
 
 
-                    if (!target) {
+                    if (
+                        !target
+                    ) {
+
                         return;
+
                     }
 
 
@@ -872,8 +860,12 @@
                     );
 
 
-                    if (!strongest) {
+                    if (
+                        !strongest
+                    ) {
+
                         return;
+
                     }
 
 
@@ -943,8 +935,12 @@
                 window.location.hash;
 
 
-            if (!hash) {
+            if (
+                !hash
+            ) {
+
                 return;
+
             }
 
 
@@ -954,8 +950,12 @@
                 );
 
 
-            if (!target) {
+            if (
+                !target
+            ) {
+
                 return;
+
             }
 
 
@@ -993,12 +993,6 @@
         avatar.addEventListener(
             "error",
             () => {
-
-                /*
-                 * Если картинки нет,
-                 * рамка остаётся на месте,
-                 * но битая иконка не показывается.
-                 */
 
                 avatar.style.visibility =
                     "hidden";

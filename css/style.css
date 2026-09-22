@@ -1264,7 +1264,7 @@ img {
 
 
 /* =========================================================
-   ROW ICON
+   WHITE MONOCHROME ICONS
 ========================================================= */
 
 .row-icon {
@@ -1289,28 +1289,42 @@ img {
     justify-content:
         center;
 
+    flex-shrink:
+        0;
+
     border-radius:
         5px;
 
-    background:
-        rgba(
-            0,
-            255,
-            136,
-            0.045
-        );
-
     color:
-        var(--green);
+        #ffffff !important;
+
+    background:
+        transparent;
+
+    font-family:
+        "Segoe UI Symbol",
+        "Noto Sans Symbols 2",
+        "Noto Sans Symbols",
+        "Arial Unicode MS",
+        sans-serif;
 
     font-size:
-        15px;
+        16px;
+
+    font-weight:
+        400;
 
     line-height:
         1;
 
-    flex-shrink:
-        0;
+    font-variant-emoji:
+        text;
+
+    filter:
+        none !important;
+
+    text-shadow:
+        none;
 }
 
 
@@ -1513,9 +1527,6 @@ img {
             0.88
         );
 }
-
-
-/* Монтаж справа */
 
 .tool-category {
     margin-left:
@@ -2439,7 +2450,7 @@ img {
             8px;
 
         font-size:
-            13px;
+            14px;
     }
 
     .favorite-panel {
@@ -2487,7 +2498,7 @@ img {
 
         padding:
             0
-            9px;
+            8px;
 
         font-size:
             10.5px;
@@ -2499,9 +2510,18 @@ img {
             nowrap;
     }
 
-    .row-icon {
-        flex-shrink:
-            0;
+    .tool-row .row-icon {
+        width:
+            21px;
+
+        min-width:
+            21px;
+
+        margin-right:
+            6px;
+
+        font-size:
+            13px;
     }
 
     .tool-category {
@@ -2739,10 +2759,24 @@ img {
 
         padding:
             0
-            8px;
+            7px;
 
         font-size:
             9.8px;
+    }
+
+    .tool-row .row-icon {
+        width:
+            19px;
+
+        min-width:
+            19px;
+
+        margin-right:
+            5px;
+
+        font-size:
+            11px;
     }
 
     .tool-category {

@@ -1,4 +1,5 @@
 (() => {
+
     "use strict";
 
 
@@ -7,7 +8,9 @@
     ====================================================== */
 
     const moscowTime =
-        document.getElementById("moscow-time");
+        document.getElementById(
+            "moscow-time"
+        );
 
 
     function updateMoscowTime() {
@@ -17,20 +20,28 @@
         }
 
 
-        const now = new Date();
+        const now =
+            new Date();
 
 
         const formatter =
             new Intl.DateTimeFormat(
                 "ru-RU",
                 {
-                    timeZone: "Europe/Moscow",
+                    timeZone:
+                        "Europe/Moscow",
 
-                    hour: "2-digit",
-                    minute: "2-digit",
-                    second: "2-digit",
+                    hour:
+                        "2-digit",
 
-                    hour12: false
+                    minute:
+                        "2-digit",
+
+                    second:
+                        "2-digit",
+
+                    hour12:
+                        false
                 }
             );
 
@@ -55,7 +66,6 @@
     ====================================================== */
 
     function createSlider({
-        name,
         trackSelector,
         controlsSelector,
         counterSelector
@@ -83,8 +93,14 @@
             !track ||
             !controls
         ) {
+
             return null;
+
         }
+
+
+        const viewport =
+            track.parentElement;
 
 
         const pages =
@@ -96,7 +112,9 @@
         if (
             pages.length === 0
         ) {
+
             return null;
+
         }
 
 
@@ -120,12 +138,13 @@
             );
 
 
-        let currentIndex = 0;
+        let currentIndex =
+            0;
 
 
-        /* ==============================================
-           UPDATE UI
-        ============================================== */
+        /* =================================================
+           UI
+        ================================================== */
 
         function updateUI() {
 
@@ -162,19 +181,20 @@
                     index
                 ) => {
 
-                    const isActive =
-                        index === currentIndex;
+                    const active =
+                        index ===
+                        currentIndex;
 
 
                     dot.classList.toggle(
                         "active",
-                        isActive
+                        active
                     );
 
 
                     dot.setAttribute(
                         "aria-selected",
-                        String(isActive)
+                        String(active)
                     );
 
                 }
@@ -184,17 +204,12 @@
             if (counter) {
 
                 counter.textContent =
-                    `PAGE ${currentIndex + 1}/${total}`;
+                    `PAGE ${
+                        currentIndex + 1
+                    }/${total}`;
 
             }
 
-
-            /*
-             * Намеренно НЕ зацикливаем.
-             * На первой странице ← отключена.
-             * На последней → отключена.
-             * Это исключает ощущение неправильного направления.
-             */
 
             if (previousButton) {
 
@@ -207,20 +222,21 @@
             if (nextButton) {
 
                 nextButton.disabled =
-                    currentIndex === total - 1;
+                    currentIndex ===
+                    total - 1;
 
             }
 
         }
 
 
-        /* ==============================================
+        /* =================================================
            GO TO PAGE
-        ============================================== */
+        ================================================== */
 
         function goTo(index) {
 
-            const safeIndex =
+            currentIndex =
                 Math.max(
                     0,
                     Math.min(
@@ -230,27 +246,28 @@
                 );
 
 
-            currentIndex =
-                safeIndex;
-
-
             updateUI();
 
         }
 
 
-        /* ==============================================
-           PREVIOUS
-        ============================================== */
+        /* =================================================
+           BUTTONS
+        ================================================== */
 
         previousButton?.addEventListener(
             "click",
-            () => {
+            (event) => {
+
+                event.stopPropagation();
+
 
                 if (
                     currentIndex <= 0
                 ) {
+
                     return;
+
                 }
 
 
@@ -262,19 +279,20 @@
         );
 
 
-        /* ==============================================
-           NEXT
-        ============================================== */
-
         nextButton?.addEventListener(
             "click",
-            () => {
+            (event) => {
+
+                event.stopPropagation();
+
 
                 if (
                     currentIndex >=
                     pages.length - 1
                 ) {
+
                     return;
+
                 }
 
 
@@ -286,16 +304,19 @@
         );
 
 
-        /* ==============================================
+        /* =================================================
            DOTS
-        ============================================== */
+        ================================================== */
 
         dots.forEach(
             (dot) => {
 
                 dot.addEventListener(
                     "click",
-                    () => {
+                    (event) => {
+
+                        event.stopPropagation();
+
 
                         const index =
                             Number(
@@ -304,9 +325,13 @@
 
 
                         if (
-                            Number.isNaN(index)
+                            Number.isNaN(
+                                index
+                            )
                         ) {
+
                             return;
+
                         }
 
 
@@ -319,101 +344,199 @@
         );
 
 
-        /* ==============================================
-           TOUCH SWIPE
-        ============================================== */
+        /* =================================================
+           POINTER DRAG
+           Works on:
+           - mouse / PC
+           - touch / phone
+           - stylus
+        ================================================== */
 
-        let startX = 0;
-        let startY = 0;
+        let pointerStartX = 0;
+        let pointerStartY = 0;
 
-        let isTouching = false;
+        let pointerActive =
+            false;
+
+        let pointerDragged =
+            false;
 
 
-        track.parentElement?.addEventListener(
-            "touchstart",
+        viewport?.addEventListener(
+            "pointerdown",
             (event) => {
 
-                const touch =
-                    event.changedTouches[0];
+                /*
+                 * Left mouse only.
+                 */
 
+                if (
+                    event.pointerType ===
+                    "mouse" &&
+                    event.button !== 0
+                ) {
 
-                if (!touch) {
                     return;
+
                 }
 
 
-                startX =
-                    touch.clientX;
+                /*
+                 * Do not start drag
+                 * directly on controls.
+                 */
+
+                if (
+                    event.target.closest(
+                        ".slider-arrow, .slider-dot"
+                    )
+                ) {
+
+                    return;
+
+                }
 
 
-                startY =
-                    touch.clientY;
+                pointerStartX =
+                    event.clientX;
 
 
-                isTouching = true;
+                pointerStartY =
+                    event.clientY;
 
-            },
-            {
-                passive: true
+
+                pointerActive =
+                    true;
+
+                pointerDragged =
+                    false;
+
+
+                viewport.setPointerCapture?.(
+                    event.pointerId
+                );
+
+
+                viewport.classList.add(
+                    "is-dragging"
+                );
+
             }
         );
 
 
-        track.parentElement?.addEventListener(
-            "touchend",
+        viewport?.addEventListener(
+            "pointermove",
             (event) => {
 
-                if (!isTouching) {
+                if (
+                    !pointerActive
+                ) {
+
                     return;
-                }
 
-
-                isTouching = false;
-
-
-                const touch =
-                    event.changedTouches[0];
-
-
-                if (!touch) {
-                    return;
                 }
 
 
                 const deltaX =
-                    touch.clientX -
-                    startX;
+                    event.clientX -
+                    pointerStartX;
 
 
                 const deltaY =
-                    touch.clientY -
-                    startY;
-
-
-                const horizontal =
-                    Math.abs(deltaX) >
-                    Math.abs(deltaY);
-
-
-                const enough =
-                    Math.abs(deltaX) >= 50;
+                    event.clientY -
+                    pointerStartY;
 
 
                 /*
-                 * Меняем страницу только тогда,
-                 * когда движение реально горизонтальное.
-                 *
-                 * Поэтому вертикальный свайп страницы
-                 * больше не ломает направление слайдера.
+                 * We only care about horizontal
+                 * movement.
                  */
 
                 if (
-                    !horizontal ||
-                    !enough
+                    !pointerDragged &&
+                    Math.abs(deltaX) > 10 &&
+                    Math.abs(deltaX) >
+                    Math.abs(deltaY)
                 ) {
-                    return;
+
+                    pointerDragged =
+                        true;
+
                 }
 
+
+                /*
+                 * While dragging horizontally,
+                 * prevent accidental selection.
+                 */
+
+                if (
+                    pointerDragged
+                ) {
+
+                    event.preventDefault();
+
+                }
+
+            },
+            {
+                passive:
+                    false
+            }
+        );
+
+
+        function finishPointer(event) {
+
+            if (
+                !pointerActive
+            ) {
+
+                return;
+
+            }
+
+
+            pointerActive =
+                false;
+
+
+            viewport.classList.remove(
+                "is-dragging"
+            );
+
+
+            const deltaX =
+                event.clientX -
+                pointerStartX;
+
+
+            const deltaY =
+                event.clientY -
+                pointerStartY;
+
+
+            const horizontal =
+                Math.abs(deltaX) >
+                Math.abs(deltaY);
+
+
+            const enough =
+                Math.abs(deltaX) >= 55;
+
+
+            /*
+             * Horizontal drag:
+             *
+             * LEFT  -> NEXT
+             * RIGHT -> PREVIOUS
+             */
+
+            if (
+                horizontal &&
+                enough
+            ) {
 
                 if (deltaX < 0) {
 
@@ -429,40 +552,91 @@
 
                 }
 
-            },
-            {
-                passive: true
+            }
+
+
+            /*
+             * Give pointer back to browser.
+             */
+
+            try {
+
+                viewport.releasePointerCapture?.(
+                    event.pointerId
+                );
+
+            } catch {
+                /* Nothing to do */
+            }
+
+        }
+
+
+        viewport?.addEventListener(
+            "pointerup",
+            finishPointer
+        );
+
+
+        viewport?.addEventListener(
+            "pointercancel",
+            finishPointer
+        );
+
+
+        viewport?.addEventListener(
+            "lostpointercapture",
+            () => {
+
+                pointerActive =
+                    false;
+
+                viewport.classList.remove(
+                    "is-dragging"
+                );
+
             }
         );
 
 
-        /* ==============================================
-           RETURN API
-        ============================================== */
+        /*
+         * Prevent image dragging from
+         * fighting with our slider.
+         */
+
+        viewport?.addEventListener(
+            "dragstart",
+            (event) => {
+
+                event.preventDefault();
+
+            }
+        );
+
+
+        /* =================================================
+           INIT
+        ================================================== */
 
         updateUI();
 
 
         return {
 
-            getIndex() {
-                return currentIndex;
-            },
-
-            goTo(index) {
-                goTo(index);
-            },
-
             next() {
+
                 goTo(
                     currentIndex + 1
                 );
+
             },
 
             previous() {
+
                 goTo(
                     currentIndex - 1
                 );
+
             }
 
         };
@@ -471,12 +645,11 @@
 
 
     /* =====================================================
-       INIT SLIDERS
+       SLIDERS
     ====================================================== */
 
     const aboutSlider =
         createSlider({
-            name: "about",
 
             trackSelector:
                 ".about-track",
@@ -486,53 +659,48 @@
 
             counterSelector:
                 ".about-counter"
+
         });
 
 
-    const devicesSlider =
-        createSlider({
-            name: "devices",
+    createSlider({
 
-            trackSelector:
-                ".devices-track",
+        trackSelector:
+            ".devices-track",
 
-            controlsSelector:
-                '[data-slider-controls="devices"]',
+        controlsSelector:
+            '[data-slider-controls="devices"]',
 
-            counterSelector:
-                ".devices-counter"
-        });
+        counterSelector:
+            ".devices-counter"
+
+    });
 
 
-    const contactSlider =
-        createSlider({
-            name: "contact",
+    createSlider({
 
-            trackSelector:
-                ".contact-track",
+        trackSelector:
+            ".contact-track",
 
-            controlsSelector:
-                '[data-slider-controls="contact"]',
+        controlsSelector:
+            '[data-slider-controls="contact"]',
 
-            counterSelector:
-                ".contact-counter"
-        });
+        counterSelector:
+            ".contact-counter"
+
+    });
 
 
     /* =====================================================
-       DESKTOP KEYBOARD
+       KEYBOARD
     ====================================================== */
 
     document.addEventListener(
         "keydown",
         (event) => {
 
-            const activeElement =
-                document.activeElement;
-
-
             const tagName =
-                activeElement?.tagName;
+                document.activeElement?.tagName;
 
 
             const isTyping =
@@ -546,17 +714,12 @@
             }
 
 
-            /*
-             * Стрелки клавиатуры меняют About.
-             * Вертикальный скролл от этого не страдает.
-             */
-
             if (
-                event.key === "ArrowLeft"
+                event.key ===
+                "ArrowLeft"
             ) {
 
                 event.preventDefault();
-
 
                 aboutSlider?.previous();
 
@@ -564,11 +727,11 @@
 
 
             if (
-                event.key === "ArrowRight"
+                event.key ===
+                "ArrowRight"
             ) {
 
                 event.preventDefault();
-
 
                 aboutSlider?.next();
 
@@ -630,16 +793,21 @@
                     event.preventDefault();
 
 
-                    if (
-                        !sections[index]
-                    ) {
+                    const target =
+                        sections[index];
+
+
+                    if (!target) {
                         return;
                     }
 
 
-                    sections[index].scrollIntoView({
-                        behavior: "smooth",
-                        block: "start"
+                    target.scrollIntoView({
+                        behavior:
+                            "smooth",
+
+                        block:
+                            "start"
                     });
 
 
@@ -655,20 +823,21 @@
 
 
     /* =====================================================
-       SECTION OBSERVER
+       SCROLL REVEAL + ACTIVE SECTION
     ====================================================== */
 
     if (
-        "IntersectionObserver" in window
+        "IntersectionObserver"
+        in window
     ) {
 
         const observer =
             new IntersectionObserver(
-                (
-                    entries
-                ) => {
 
-                    let bestEntry = null;
+                (entries) => {
+
+                    let strongest =
+                        null;
 
 
                     entries.forEach(
@@ -677,17 +846,24 @@
                             if (
                                 !entry.isIntersecting
                             ) {
+
                                 return;
+
                             }
 
 
+                            entry.target.classList.add(
+                                "section-visible"
+                            );
+
+
                             if (
-                                !bestEntry ||
+                                !strongest ||
                                 entry.intersectionRatio >
-                                bestEntry.intersectionRatio
+                                strongest.intersectionRatio
                             ) {
 
-                                bestEntry =
+                                strongest =
                                     entry;
 
                             }
@@ -696,14 +872,14 @@
                     );
 
 
-                    if (!bestEntry) {
+                    if (!strongest) {
                         return;
                     }
 
 
                     const index =
                         sections.indexOf(
-                            bestEntry.target
+                            strongest.target
                         );
 
 
@@ -718,6 +894,7 @@
                     }
 
                 },
+
                 {
                     threshold: [
                         0.35,
@@ -725,6 +902,7 @@
                         0.7
                     ]
                 }
+
             );
 
 
@@ -741,32 +919,16 @@
     }
 
 
-    setActiveSection(0);
-
-
     /* =====================================================
-       AVATAR ERROR PROTECTION
+       INITIAL SECTION
     ====================================================== */
 
-    const avatar =
-        document.querySelector(
-            ".avatar-image"
-        );
+    sections[0]?.classList.add(
+        "section-visible"
+    );
 
 
-    if (avatar) {
-
-        avatar.addEventListener(
-            "error",
-            () => {
-
-                avatar.style.display =
-                    "none";
-
-            }
-        );
-
-    }
+    setActiveSection(0);
 
 
     /* =====================================================
@@ -801,15 +963,49 @@
                 () => {
 
                     target.scrollIntoView({
-                        behavior: "smooth",
-                        block: "start"
+                        behavior:
+                            "smooth",
+
+                        block:
+                            "start"
                     });
 
                 },
-                100
+                120
             );
 
         }
     );
+
+
+    /* =====================================================
+       AVATAR PROTECTION
+    ====================================================== */
+
+    const avatar =
+        document.querySelector(
+            ".avatar-image"
+        );
+
+
+    if (avatar) {
+
+        avatar.addEventListener(
+            "error",
+            () => {
+
+                /*
+                 * Если картинки нет,
+                 * рамка остаётся на месте,
+                 * но битая иконка не показывается.
+                 */
+
+                avatar.style.visibility =
+                    "hidden";
+
+            }
+        );
+
+    }
 
 })();

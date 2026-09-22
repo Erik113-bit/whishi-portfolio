@@ -1,846 +1,877 @@
 <!DOCTYPE html>
 <html lang="ru">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Wishi Portfolio</title>
+  <meta
+    name="description"
+    content="Wishi — portfolio, programming, tools, devices and contacts."
+  >
 
-    <link rel="stylesheet" href="css/style.css">
+  <title>Wishi Portfolio</title>
+
+  <link rel="stylesheet" href="./css/style.css">
 </head>
 
 <body>
 
-<!-- =========================================
-     HEADER
-========================================= -->
+  <!-- =========================
+       HEADER
+  ========================== -->
+  <header class="header">
 
-<header class="header">
-
-    <a href="#home" class="logo">
-        Wishi
+    <a
+      class="logo"
+      href="#home"
+      aria-label="Wishi — на главную"
+    >
+      Wishi
     </a>
 
-    <nav class="nav">
-        <a href="#about">About</a>
-        <a href="#devices">Устройства</a>
-        <a href="#contact">Contact</a>
-        <a href="#channels">Channels</a>
+    <nav
+      class="nav"
+      aria-label="Основная навигация"
+    >
+      <a href="#about">About</a>
+      <a href="#devices">Устройства</a>
+      <a href="#contact">Contact</a>
     </nav>
 
-</header>
-
-
-<!-- =========================================
-     SECTION INDICATORS
-========================================= -->
-
-<div class="side-navigation">
-
-    <a href="#home" class="dot active"></a>
-    <a href="#about" class="dot"></a>
-    <a href="#devices" class="dot"></a>
-    <a href="#contact" class="dot"></a>
-    <a href="#channels" class="dot"></a>
-
-</div>
-
-
-<!-- =========================================
-     HERO
-========================================= -->
-
-<section id="home" class="section hero">
-
-    <div class="hero-image">
-
-        <img src="images/Wishi.png" alt="Wishi">
-
+    <!-- Верхняя навигация для телефона -->
+    <div
+      class="mobile-progress"
+      aria-hidden="true"
+    >
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
     </div>
 
+  </header>
 
-    <div class="hero-content">
 
-        <p class="small-title">
-            Привет, я...
-        </p>
+  <!-- =========================
+       SIDE NAVIGATION
+  ========================== -->
+  <nav
+    class="side-navigation"
+    aria-label="Навигация по секциям"
+  >
 
-        <h1>
-            Wishi
-        </h1>
+    <a
+      href="#home"
+      class="dot active"
+      aria-label="Главная"
+    ></a>
 
-        <p class="description">
-            Кодер, монтажер. Создаю проекты, экспериментирую с кодом и визуалом.
-            Люблю делать вещи, которые хорошо работают и выглядят)
-        </p>
+    <a
+      href="#about"
+      class="dot"
+      aria-label="Обо мне"
+    ></a>
 
-        <div class="buttons">
+    <a
+      href="#devices"
+      class="dot"
+      aria-label="Устройства"
+    ></a>
 
-            <a href="#about" class="button primary">
-                Обо мне →
-            </a>
+    <a
+      href="#contact"
+      class="dot"
+      aria-label="Контакты и каналы"
+    ></a>
 
-        </div>
+  </nav>
 
-    </div>
+
+  <main>
+
+    <!-- =========================
+         HOME
+    ========================== -->
+    <section id="home" class="section hero">
+
+  <div class="hero-image">
+    <img
+      src="./images/Wishi.png"
+      alt="Wishi"
+      width="430"
+      height="430"
+    >
+  </div>
+
+  <div class="hero-content">
+
+    <p class="small-title">
+      Привет, я...
+    </p>
+
+    <h1>
+      Wishi
+    </h1>
+
+    <p class="description">
+      Кодер, монтажёр. Создаю проекты, экспериментирую
+      с кодом и визуалом. Люблю делать вещи, которые
+      хорошо работают и выглядят.
+    </p>
+
+  </div>
 
 </section>
 
+    <!-- =========================
+         ABOUT
+    ========================== -->
+    <section
+      id="about"
+      class="section section-slider"
+    >
 
-<!-- =========================================
-     ABOUT
-========================================= -->
-
-<section id="about" class="section">
-
-    <div class="section-top">
-
-        <div class="section-title">
-            <span>ABOUT ME</span>
-        </div>
-
-    </div>
+      <div class="section-title">
+        <span>About me</span>
+      </div>
 
 
-    <div class="about-slider">
+      <div class="slider-frame about-slider">
 
-        <div class="about-pages">
+        <div class="slider-pages about-pages">
 
 
-            <!-- =================================
-                 ABOUT PAGE 1
-            ================================== -->
+          <!-- PAGE 1 — PERSONAL INFO -->
+          <article class="slider-page about-page">
 
-            <div class="about-page">
+            <div class="page-content">
 
-                <div class="about-text">
+              <p class="small-title">
+                Personal info
+              </p>
 
-                    <p class="small-title">
-                        Обо мне
-                    </p>
+              <h2>
+                Обо мне
+              </h2>
 
-                    <h2>
-                        Коротко обо мне
-                    </h2>
 
+              <div class="info-card about-card">
+
+                <div class="info-item">
+                  <span>Nickname</span>
+                  <strong>
+                    Wishi / Виши
+                  </strong>
                 </div>
 
 
-                <div class="about-card">
-
-                    <div>
-
-                        <span>
-                            <span class="about-icon">👤</span>
-                            Никнейм
-                        </span>
-
-                        <strong>
-                            Wishi/Виши
-                        </strong>
-
-                    </div>
-
-
-                    <div>
-
-                        <span>
-                            <span class="about-icon">🎂</span>
-                            День Рождения
-                        </span>
-
-                        <strong>
-                            2 Февраля
-                        </strong>
-
-                    </div>
-
-
-                    <div>
-
-                        <span>
-                            <span class="about-icon">💻</span>
-                            В программировании
-                        </span>
-
-                        <strong>
-                            Около 4 года
-                        </strong>
-
-                    </div>
-
-
-                    <div>
-
-                        <span>
-                            <span class="about-icon">📚</span>
-                            Изучаю
-                        </span>
-
-                        <strong>
-                            Арабский и Английский
-                        </strong>
-
-                    </div>
-
-
-                    <div>
-
-                        <span>
-                            <span class="about-icon">⚙️</span>
-                            Специализация
-                        </span>
-
-                        <strong>
-                            Low-level разработчик
-                        </strong>
-
-                    </div>
-
-
-                    <div>
-
-                        <span>
-                            <span class="about-icon">🕐</span>
-                            Часовой пояс
-                        </span>
-
-                        <strong class="moscow-clock">
-
-                            <span id="moscow-time">
-                                00:00:00
-                            </span>
-
-                            <small>
-                                МСК (UTC+3)
-                            </small>
-
-                        </strong>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <!-- =================================
-                 ABOUT PAGE 2
-                 PROGRAMMING LANGUAGES
-            ================================== -->
-
-            <div class="about-page">
-
-                <div class="about-text">
-
-                    <p class="small-title">
-                        MY STACK
-                    </p>
-
-                    <h2>
-                        Языки программирования
-                    </h2>
-
+                <div class="info-item">
+                  <span>Birthday</span>
+                  <strong>
+                    2 Февраля
+                  </strong>
                 </div>
 
 
-                <div class="stack-wrapper">
-
-                    <div class="about-skill-block languages-block">
-
-                        <span class="about-skill-title">
-                            Языки Программирования
-                        </span>
-
-
-                        <div class="programming-languages">
-
-                            <div class="programming-language">
-
-                                <span class="language-icon">
-                                    ⚙️
-                                </span>
-
-                                <span>
-                                    C
-                                </span>
-
-                            </div>
-
-
-                            <div class="programming-language">
-
-                                <span class="language-icon">
-                                    ⚙️
-                                </span>
-
-                                <span>
-                                    C++
-                                </span>
-
-                            </div>
-
-
-                            <div class="programming-language">
-
-                                <span class="language-icon">
-                                    🟨
-                                </span>
-
-                                <span>
-                                    JavaScript
-                                </span>
-
-                            </div>
-
-
-                            <div class="programming-language">
-
-                                <span class="language-icon">
-                                    🐍
-                                </span>
-
-                                <span>
-                                    Python
-                                </span>
-
-                            </div>
-
-
-                            <div class="programming-language">
-
-                                <span class="language-icon">
-                                    🌙
-                                </span>
-
-                                <span>
-                                    Lua
-                                </span>
-
-                            </div>
-
-                        </div>
-
-                    </div>
-
-
-                    <!-- FAVORITE -->
-
-                    <div class="favorite-language">
-
-                        <span class="favorite-title">
-                            Мой фаварит
-                        </span>
-
-                        <strong>
-                            C++ Самый любимый
-                        </strong>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <!-- =================================
-                 ABOUT PAGE 3
-                 TOOLS
-            ================================== -->
-
-            <div class="about-page">
-
-                <div class="about-text">
-
-                    <p class="small-title">
-                        MY TOOLS
-                    </p>
-
-                    <h2>
-                        Инструменты
-                    </h2>
-
+                <div class="info-item">
+                  <span>Programming</span>
+                  <strong>
+                    Около 4 лет
+                  </strong>
                 </div>
 
 
-                <div class="about-skill-block tools-block">
+                <div class="info-item">
+                  <span>Studying</span>
+                  <strong>
+                    Арабский и Английский
+                  </strong>
+                </div>
 
-                    <span class="about-skill-title">
-                        Инструменты
+
+                <div class="info-item">
+                  <span>Specialization</span>
+                  <strong>
+                    Low-level разработчик
+                  </strong>
+                </div>
+
+
+                <div class="info-item">
+                  <span>Time zone</span>
+
+                  <strong class="moscow-clock">
+
+                    <span id="moscow-time">
+                      --:--:--
                     </span>
 
+                    <small>
+                      МСК (UTC+3)
+                    </small>
 
-                    <div class="programming-languages">
-
-                        <span class="programming-language">
-                            HTML
-                        </span>
-
-                        <span class="programming-language">
-                            CSS
-                        </span>
-
-                        <span class="programming-language">
-                            Git
-                        </span>
-
-                        <span class="programming-language">
-                            Bash
-                        </span>
-
-                        <span class="programming-language">
-                            PowerShell
-                        </span>
-
-                        <span class="programming-language">
-                            raylib for C
-                        </span>
-
-                        <span class="programming-language">
-                            VSDC
-                        </span>
-
-                        <span class="programming-language">
-                            CapCut
-                        </span>
-
-                    </div>
+                  </strong>
 
                 </div>
+
+              </div>
 
             </div>
 
-
-        </div>
-
-    </div>
+          </article>
 
 
-    <!-- ABOUT NAVIGATION -->
+          <!-- PAGE 2 — LANGUAGES -->
+          <article class="slider-page about-page">
 
-    <div class="about-navigation">
+            <div class="page-content">
 
-        <button
-            type="button"
-            class="about-arrow about-prev"
-            aria-label="Previous page"
-        >
-            ‹
-        </button>
+              <p class="small-title">
+                My stack
+              </p>
 
-
-        <div class="about-dots">
-
-            <button
-                type="button"
-                class="about-dot active"
-                aria-label="About page 1"
-            ></button>
-
-            <button
-                type="button"
-                class="about-dot"
-                aria-label="About page 2"
-            ></button>
-
-            <button
-                type="button"
-                class="about-dot"
-                aria-label="About page 3"
-            ></button>
-
-        </div>
+              <h2>
+                Языки<br class="desktop-break">
+                программирования
+              </h2>
 
 
-        <button
-            type="button"
-            class="about-arrow about-next"
-            aria-label="Next page"
-        >
-            ›
-        </button>
+              <div class="stack-block">
 
-    </div>
-
-</section>
+                <span class="block-label">
+                  Языки программирования
+                </span>
 
 
-<!-- =========================================
-     DEVICES
-========================================= -->
+                <div class="programming-languages">
 
-<section id="devices" class="section">
+                  <div class="programming-language">
+                    <span
+                      class="language-icon"
+                      aria-hidden="true"
+                    >
+                      ✺
+                    </span>
 
-    <div class="section-top">
-
-        <div class="section-title">
-            <span>Устройства</span>
-        </div>
-
-    </div>
-
-
-    <div class="devices-slider">
-
-        <div class="devices-pages">
+                    <span>C</span>
+                  </div>
 
 
-            <!-- =================================
-                 PC
-            ================================== -->
+                  <div class="programming-language">
+                    <span
+                      class="language-icon"
+                      aria-hidden="true"
+                    >
+                      ✹
+                    </span>
 
-            <div class="device-page">
+                    <span>C++</span>
+                  </div>
 
-                <div class="device-text">
 
-                    <p class="small-title">
-                        DEVICE 01
-                    </p>
+                  <div class="programming-language">
+                    <span
+                      class="language-icon"
+                      aria-hidden="true"
+                    >
+                      ■
+                    </span>
 
-                    <h2>
-                        ПК
-                    </h2>
+                    <span>JavaScript</span>
+                  </div>
+
+
+                  <div class="programming-language">
+                    <span
+                      class="language-icon"
+                      aria-hidden="true"
+                    >
+                      ♟
+                    </span>
+
+                    <span>Python</span>
+                  </div>
+
+
+                  <div class="programming-language">
+                    <span
+                      class="language-icon"
+                      aria-hidden="true"
+                    >
+                      ◐
+                    </span>
+
+                    <span>Lua</span>
+                  </div>
 
                 </div>
 
-
-                <div class="device-card">
-
-                    <div>
-
-                        <span>
-                            CPU
-                        </span>
-
-                        <strong>
-                            Intel i5-12400F
-                        </strong>
-
-                    </div>
+              </div>
 
 
-                    <div>
+              <div class="favorite-language">
 
-                        <span>
-                            GPU
-                        </span>
+                <span class="favorite-title">
+                  Мой фаварит
+                </span>
 
-                        <strong>
-                            RTX 3060 12GB
-                        </strong>
+                <strong>
+                  C++ Самый любимый
+                </strong>
 
-                    </div>
-
-
-                    <div>
-
-                        <span>
-                            RAM / ДИСК
-                        </span>
-
-                        <strong>
-                            32GB / 2TB SSD
-                        </strong>
-
-                    </div>
-
-
-                    <div>
-
-                        <span>
-                            ОС
-                        </span>
-
-                        <strong>
-                            Fedora + GNOME
-                        </strong>
-
-                    </div>
-
-                </div>
+              </div>
 
             </div>
 
-
-            <!-- =================================
-                 LAPTOP
-            ================================== -->
-
-            <div class="device-page">
-
-                <div class="device-text">
-
-                    <p class="small-title">
-                        DEVICE 02
-                    </p>
-
-                    <h2>
-                        Ноутбук
-                    </h2>
-
-                </div>
+          </article>
 
 
-                <div class="device-card">
+          <!-- PAGE 3 — TOOLS -->
+          <article class="slider-page about-page">
 
-                    <div>
+            <div class="page-content">
 
-                        <span>
-                            CPU
-                        </span>
+              <p class="small-title">
+                My tools
+              </p>
 
-                        <strong>
-                            Intel i7-4810MQ
-                        </strong>
-
-                    </div>
-
-
-                    <div>
-
-                        <span>
-                            GPU
-                        </span>
-
-                        <strong>
-                            Intel HD Graphics 4600
-                        </strong>
-
-                    </div>
+              <h2>
+                Инструменты
+              </h2>
 
 
-                    <div>
+              <div class="stack-block tools-block">
 
-                        <span>
-                            RAM / ДИСК
-                        </span>
-
-                        <strong>
-                            8GB / 1TB HDD
-                        </strong>
-
-                    </div>
+                <span class="block-label">
+                  Инструменты
+                </span>
 
 
-                    <div>
+                <div class="tools-grid">
 
-                        <span>
-                            ОС
-                        </span>
+                  <div class="tool-item">
+                    HTML
+                  </div>
 
-                        <strong>
-                            Linux Mint + XFCE
-                        </strong>
+                  <div class="tool-item">
+                    CSS
+                  </div>
 
-                    </div>
+                  <div class="tool-item">
+                    Git
+                  </div>
+
+                  <div class="tool-item">
+                    Bash
+                  </div>
+
+                  <div class="tool-item">
+                    PowerShell
+                  </div>
+
+                  <div class="tool-item">
+                    raylib for C
+                  </div>
+
+                  <div class="tool-item">
+                    VSDC
+                  </div>
+
+                  <div class="tool-item">
+                    CapCut
+                  </div>
 
                 </div>
+
+              </div>
 
             </div>
 
+          </article>
 
         </div>
 
-    </div>
+      </div>
 
 
-    <!-- DEVICE NAVIGATION -->
-
-    <div class="device-navigation">
+      <!-- ABOUT NAVIGATION -->
+      <div
+        class="slider-navigation"
+        aria-label="Навигация по страницам About"
+      >
 
         <button
-            type="button"
-            class="device-arrow device-prev"
-            aria-label="Previous device"
+          class="slider-arrow about-prev"
+          type="button"
+          aria-label="Предыдущая страница"
         >
-            ‹
+          ‹
         </button>
 
 
-        <div class="device-dots">
+        <div
+          class="slider-dots"
+          role="tablist"
+          aria-label="Страницы About"
+        >
 
-            <button
-                type="button"
-                class="device-dot active"
-                aria-label="PC"
-            ></button>
+          <button
+            class="slider-dot active"
+            type="button"
+            role="tab"
+            aria-label="Страница 1"
+            aria-selected="true"
+          ></button>
 
-            <button
-                type="button"
-                class="device-dot"
-                aria-label="Laptop"
-            ></button>
+          <button
+            class="slider-dot"
+            type="button"
+            role="tab"
+            aria-label="Страница 2"
+            aria-selected="false"
+          ></button>
+
+          <button
+            class="slider-dot"
+            type="button"
+            role="tab"
+            aria-label="Страница 3"
+            aria-selected="false"
+          ></button>
 
         </div>
 
 
         <button
-            type="button"
-            class="device-arrow device-next"
-            aria-label="Next device"
+          class="slider-arrow about-next"
+          type="button"
+          aria-label="Следующая страница"
         >
-            ›
+          ›
         </button>
 
-    </div>
+      </div>
 
-</section>
+    </section>
 
 
-<!-- =========================================
-     CONTACT
-========================================= -->
+    <!-- =========================
+         DEVICES
+    ========================== -->
+    <section
+      id="devices"
+      class="section section-slider"
+    >
 
-<section id="contact" class="section">
+      <div class="section-title">
+        <span>Devices</span>
+      </div>
 
-    <div class="section-top">
 
-        <div class="section-title">
-            <span>CONTACT</span>
+      <div class="slider-frame devices-slider">
+
+        <div class="slider-pages devices-pages">
+
+
+          <!-- PC -->
+          <article class="slider-page device-page">
+
+            <div class="page-content">
+
+              <p class="small-title">
+                PC
+              </p>
+
+              <h2>
+                Основной компьютер
+              </h2>
+
+
+              <div class="info-card device-card">
+
+                <div class="info-item">
+
+                  <span>CPU</span>
+
+                  <strong>
+                    Intel i5-12400F
+                  </strong>
+
+                </div>
+
+
+                <div class="info-item">
+
+                  <span>GPU</span>
+
+                  <strong>
+                    RTX 3060 12GB
+                  </strong>
+
+                </div>
+
+
+                <div class="info-item">
+
+                  <span>RAM / Disk</span>
+
+                  <strong>
+                    32GB / 2TB SSD
+                  </strong>
+
+                </div>
+
+
+                <div class="info-item">
+
+                  <span>OS</span>
+
+                  <strong>
+                    Fedora + GNOME
+                  </strong>
+
+                </div>
+
+              </div>
+
+            </div>
+
+          </article>
+
+
+          <!-- LAPTOP -->
+          <article class="slider-page device-page">
+
+            <div class="page-content">
+
+              <p class="small-title">
+                Laptop
+              </p>
+
+              <h2>
+                Ноутбук
+              </h2>
+
+
+              <div class="info-card device-card">
+
+                <div class="info-item">
+
+                  <span>CPU</span>
+
+                  <strong>
+                    Intel i7-4810MQ
+                  </strong>
+
+                </div>
+
+
+                <div class="info-item">
+
+                  <span>GPU</span>
+
+                  <strong>
+                    Intel HD Graphics 4600
+                  </strong>
+
+                </div>
+
+
+                <div class="info-item">
+
+                  <span>RAM / Disk</span>
+
+                  <strong>
+                    8GB / 1TB HDD
+                  </strong>
+
+                </div>
+
+
+                <div class="info-item">
+
+                  <span>OS</span>
+
+                  <strong>
+                    Linux Mint + XFCE
+                  </strong>
+
+                </div>
+
+              </div>
+
+            </div>
+
+          </article>
+
         </div>
 
-    </div>
+      </div>
 
 
-    <div class="contact-content">
+      <!-- DEVICE NAVIGATION -->
+      <div
+        class="slider-navigation"
+        aria-label="Навигация по страницам Devices"
+      >
 
-        <div class="contact-text">
-
-            <p class="small-title">
-                Контакты
-            </p>
-
-            <h2>
-                Свяжитесь со мной
-            </h2>
-
-            <p>
-                Если у вас есть вопрос,
-                предложение или идея для проекта — буду рад обсудить её.
-            </p>
+        <button
+          class="slider-arrow device-prev"
+          type="button"
+          aria-label="Предыдущая страница"
+        >
+          ‹
+        </button>
 
 
-            <div class="contact-links">
+        <div
+          class="slider-dots"
+          role="tablist"
+          aria-label="Страницы Devices"
+        >
+
+          <button
+            class="slider-dot active"
+            type="button"
+            role="tab"
+            aria-label="Страница 1"
+            aria-selected="true"
+          ></button>
+
+          <button
+            class="slider-dot"
+            type="button"
+            role="tab"
+            aria-label="Страница 2"
+            aria-selected="false"
+          ></button>
+
+        </div>
+
+
+        <button
+          class="slider-arrow device-next"
+          type="button"
+          aria-label="Следующая страница"
+        >
+          ›
+        </button>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         CONTACT + CHANNELS
+    ========================== -->
+    <section
+      id="contact"
+      class="section section-slider"
+    >
+
+      <div class="section-title">
+        <span>Contact / Channels</span>
+      </div>
+
+
+      <div class="slider-frame contact-slider">
+
+        <div class="slider-pages contact-pages">
+
+
+          <!-- CONTACT PAGE -->
+          <article class="slider-page contact-page">
+
+            <div class="page-content contact-content">
+
+              <p class="small-title">
+                Contact
+              </p>
+
+              <h2>
+                Связаться со мной
+              </h2>
+
+              <p class="section-description">
+                Мои основные контакты и социальные сети.
+              </p>
+
+
+              <div class="link-grid">
 
                 <a
-                    href="https://t.me/byvscode"
-                    target="_blank"
-                    rel="noopener"
+                  href="https://t.me/byvscode"
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
-                    Telegram
+                  Telegram
                 </a>
+
 
                 <a
-                    href="https://github.com/wishixcoding"
-                    target="_blank"
-                    rel="noopener"
+                  href="https://github.com/wishixcoding"
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
-                    GitHub
+                  GitHub
                 </a>
+
 
                 <a
-                    href="https://www.tiktok.com/@bywishi"
-                    target="_blank"
-                    rel="noopener"
+                  href="https://www.tiktok.com/@bywishi"
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
-                    Tik Tok
+                  TikTok
                 </a>
 
-                <a href="mailto:wishixcoding@gmail.com">
-                    Email
+
+                <a
+                  href="mailto:wishixcoding@gmail.com"
+                >
+                  Email
                 </a>
+
+              </div>
 
             </div>
 
-        </div>
-
-    </div>
-
-</section>
+          </article>
 
 
-<!-- =========================================
-     CHANNELS
-========================================= -->
+          <!-- CHANNELS PAGE -->
+          <article class="slider-page contact-page">
 
-<section id="channels" class="section">
+            <div class="page-content contact-content">
 
-    <div class="section-top">
+              <p class="small-title">
+                Channels
+              </p>
 
-        <div class="section-title">
-            <span>CHANNELS</span>
-        </div>
+              <h2>
+                Мои каналы
+              </h2>
 
-    </div>
-
-
-    <div class="channel-content">
-
-        <p class="small-title">
-            Каналы
-        </p>
-
-        <h2>
-            Мои Каналы
-        </h2>
-
-        <p>
-            Если вы хотите следить за мной в каналах, буду рад каждому.
-        </p>
+              <p class="section-description">
+                Про IT, проекты, разработку и полезные материалы.
+              </p>
 
 
-        <div class="channel-links">
+              <div class="link-grid channel-links">
 
-            <a
-                href="https://t.me/Wishitg"
-                target="_blank"
-                rel="noopener"
-            >
-                Мой путь в IT
-            </a>
+                <a
+                  href="https://t.me/Wishitg"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Мой путь в IT
+                </a>
 
-            <a
-                href="https://t.me/fAYSONdev"
-                target="_blank"
-                rel="noopener"
-            >
-                Telegram Channel of my friend
-            </a>
 
-            <a
-                href="https://t.me/teamwishes"
-                target="_blank"
-                rel="noopener"
-            >
-                Сообщество Программистов
-            </a>
+                <a
+                  href="https://t.me/fAYSONdev"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Telegram Channel of my friend
+                </a>
+
+
+                <a
+                  href="https://t.me/teamwishes"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Сообщество Программистов
+                </a>
+
+              </div>
+
+            </div>
+
+          </article>
 
         </div>
 
-    </div>
-
-</section>
+      </div>
 
 
-<!-- =========================================
-     FOOTER
-========================================= -->
+      <!-- CONTACT NAVIGATION -->
+      <div
+        class="slider-navigation"
+        aria-label="Навигация по страницам Contact"
+      >
 
-<footer>
+        <button
+          class="slider-arrow contact-prev"
+          type="button"
+          aria-label="Предыдущая страница"
+        >
+          ‹
+        </button>
+
+
+        <div
+          class="slider-dots"
+          role="tablist"
+          aria-label="Страницы Contact"
+        >
+
+          <button
+            class="slider-dot active"
+            type="button"
+            role="tab"
+            aria-label="Страница 1"
+            aria-selected="true"
+          ></button>
+
+          <button
+            class="slider-dot"
+            type="button"
+            role="tab"
+            aria-label="Страница 2"
+            aria-selected="false"
+          ></button>
+
+        </div>
+
+
+        <button
+          class="slider-arrow contact-next"
+          type="button"
+          aria-label="Следующая страница"
+        >
+          ›
+        </button>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- =========================
+       FOOTER
+  ========================== -->
+  <footer>
 
     <h2>
-        Wishi
+      Wishi
     </h2>
 
     <p>
-        © 2026 Wishi. All rights reserved.
+      © 2026 Wishi. Все права защищены.
     </p>
 
-</footer>
+  </footer>
 
 
-<script src="js/script.js"></script>
+  <script
+    src="./js/script.js"
+    defer
+  ></script>
 
 </body>
 </html>

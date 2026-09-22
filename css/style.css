@@ -228,13 +228,6 @@ img {
         0.4px;
 }
 
-.logo-symbol {
-    color:
-        var(--green);
-
-    font-weight:
-        900;
-}
 
 .logo-cursor {
     color:
@@ -244,30 +237,6 @@ img {
         cursor-blink
         1s
         steps(2, start)
-        infinite;
-}
-
-.online-indicator {
-    width:
-        8px;
-
-    height:
-        8px;
-
-    border-radius:
-        50%;
-
-    background:
-        var(--green);
-
-    box-shadow:
-        0 0 16px
-        var(--green-soft);
-
-    animation:
-        online-pulse
-        2.2s
-        ease-in-out
         infinite;
 }
 
@@ -2032,27 +2001,6 @@ img {
     }
 }
 
-@keyframes online-pulse {
-
-    0%,
-    100% {
-        transform:
-            scale(1);
-
-        box-shadow:
-            0 0 10px
-            rgba(0, 255, 136, 0.18);
-    }
-
-    50% {
-        transform:
-            scale(1.15);
-
-        box-shadow:
-            0 0 18px
-            rgba(0, 255, 136, 0.42);
-    }
-}
 
 @keyframes rec-pulse {
 

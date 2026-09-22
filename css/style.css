@@ -316,7 +316,12 @@ img {
         20px;
 
     background:
-        rgba(145, 159, 148, 0.35);
+        rgba(
+            145,
+            159,
+            148,
+            0.35
+        );
 
     transition:
         height 0.25s ease,
@@ -1264,21 +1269,21 @@ img {
 
 
 /* =========================================================
-   WHITE MONOCHROME ICONS
+   WHITE LANGUAGE ICONS
 ========================================================= */
 
 .row-icon {
     width:
-        24px;
+        23px;
 
     min-width:
-        24px;
+        23px;
 
     height:
-        24px;
+        23px;
 
     margin-right:
-        10px;
+        9px;
 
     display:
         inline-flex;
@@ -1291,9 +1296,6 @@ img {
 
     flex-shrink:
         0;
-
-    border-radius:
-        5px;
 
     color:
         #ffffff !important;
@@ -1309,7 +1311,7 @@ img {
         sans-serif;
 
     font-size:
-        16px;
+        15px;
 
     font-weight:
         400;
@@ -1322,9 +1324,6 @@ img {
 
     filter:
         none !important;
-
-    text-shadow:
-        none;
 }
 
 
@@ -1387,6 +1386,11 @@ img {
     border-color:
         rgba(0, 255, 136, 0.25);
 }
+
+
+/* =========================================================
+   FAVORITE
+========================================================= */
 
 .favorite-panel {
     min-height:
@@ -1527,6 +1531,49 @@ img {
             0.88
         );
 }
+
+
+/* =========================================================
+   PNG WRENCH
+========================================================= */
+
+.tool-icon {
+    width:
+        20px;
+
+    height:
+        20px;
+
+    flex:
+        0 0 20px;
+
+    margin-right:
+        9px;
+
+    display:
+        block;
+
+    object-fit:
+        contain;
+
+    filter:
+        brightness(0)
+        invert(1);
+
+    opacity:
+        0.95;
+
+    user-select:
+        none;
+
+    pointer-events:
+        none;
+}
+
+
+/* =========================================================
+   MONTAЖ
+========================================================= */
 
 .tool-category {
     margin-left:
@@ -2438,19 +2485,19 @@ img {
 
     .row-icon {
         width:
-            22px;
+            21px;
 
         min-width:
-            22px;
+            21px;
 
         height:
-            22px;
+            21px;
 
         margin-right:
-            8px;
+            7px;
 
         font-size:
-            14px;
+            13px;
     }
 
     .favorite-panel {
@@ -2510,18 +2557,18 @@ img {
             nowrap;
     }
 
-    .tool-row .row-icon {
+    .tool-icon {
         width:
-            21px;
+            17px;
 
-        min-width:
-            21px;
+        height:
+            17px;
+
+        flex-basis:
+            17px;
 
         margin-right:
             6px;
-
-        font-size:
-            13px;
     }
 
     .tool-category {
@@ -2765,18 +2812,18 @@ img {
             9.8px;
     }
 
-    .tool-row .row-icon {
+    .tool-icon {
         width:
-            19px;
+            17px;
 
-        min-width:
-            19px;
+        height:
+            17px;
+
+        flex-basis:
+            17px;
 
         margin-right:
             5px;
-
-        font-size:
-            11px;
     }
 
     .tool-category {

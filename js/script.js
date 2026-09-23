@@ -62,7 +62,7 @@
 
 
     /* =====================================================
-       GENERIC SLIDER
+       SLIDER CREATOR
     ====================================================== */
 
     function createSlider({
@@ -231,7 +231,7 @@
 
 
         /* =================================================
-           GO TO PAGE
+           GO TO
         ================================================== */
 
         function goTo(index) {
@@ -252,7 +252,7 @@
 
 
         /* =================================================
-           PREVIOUS
+           BUTTONS
         ================================================== */
 
         previousButton?.addEventListener(
@@ -278,10 +278,6 @@
             }
         );
 
-
-        /* =================================================
-           NEXT
-        ================================================== */
 
         nextButton?.addEventListener(
             "click",
@@ -329,9 +325,7 @@
 
 
                         if (
-                            Number.isNaN(
-                                index
-                            )
+                            Number.isNaN(index)
                         ) {
 
                             return;
@@ -350,6 +344,7 @@
 
         /* =================================================
            POINTER DRAG
+           PC + TOUCH
         ================================================== */
 
         let pointerStartX =
@@ -369,6 +364,10 @@
             "pointerdown",
             (event) => {
 
+                /*
+                 * Только левая кнопка мыши.
+                 */
+
                 if (
                     event.pointerType ===
                     "mouse" &&
@@ -379,6 +378,11 @@
 
                 }
 
+
+                /*
+                 * Не начинаем drag на стрелке
+                 * или точке.
+                 */
 
                 if (
                     event.target.closest(
@@ -442,6 +446,11 @@
                     event.clientY -
                     pointerStartY;
 
+
+                /*
+                 * Считаем drag горизонтальным
+                 * только когда X больше Y.
+                 */
 
                 if (
                     !pointerDragged &&
@@ -516,6 +525,11 @@
                 enough
             ) {
 
+                /*
+                 * LEFT = NEXT
+                 * RIGHT = PREVIOUS
+                 */
+
                 if (
                     deltaX < 0
                 ) {
@@ -542,7 +556,9 @@
                 );
 
             } catch {
-                /* Nothing to do */
+
+                /* Nothing */
+
             }
 
         }
@@ -617,7 +633,7 @@
 
 
     /* =====================================================
-       ABOUT
+       INITIALIZE SLIDERS
     ====================================================== */
 
     const aboutSlider =
@@ -635,10 +651,6 @@
         });
 
 
-    /* =====================================================
-       DEVICES
-    ====================================================== */
-
     createSlider({
 
         trackSelector:
@@ -652,10 +664,6 @@
 
     });
 
-
-    /* =====================================================
-       CONTACT
-    ====================================================== */
 
     createSlider({
 
@@ -745,6 +753,14 @@
         );
 
 
+    const sectionBars =
+        Array.from(
+            document.querySelectorAll(
+                ".section-progress-bar"
+            )
+        );
+
+
     function setActiveSection(index) {
 
         sectionDots.forEach(
@@ -761,8 +777,27 @@
             }
         );
 
+
+        sectionBars.forEach(
+            (
+                bar,
+                barIndex
+            ) => {
+
+                bar.classList.toggle(
+                    "active",
+                    barIndex === index
+                );
+
+            }
+        );
+
     }
 
+
+    /* =====================================================
+       DESKTOP SIDE DOTS
+    ====================================================== */
 
     sectionDots.forEach(
         (
@@ -811,7 +846,57 @@
 
 
     /* =====================================================
-       SCROLL REVEAL + ACTIVE SECTION
+       TOP RIGHT BARS
+    ====================================================== */
+
+    sectionBars.forEach(
+        (
+            bar,
+            index
+        ) => {
+
+            bar.addEventListener(
+                "click",
+                (event) => {
+
+                    event.preventDefault();
+
+
+                    const target =
+                        sections[index];
+
+
+                    if (
+                        !target
+                    ) {
+
+                        return;
+
+                    }
+
+
+                    target.scrollIntoView({
+                        behavior:
+                            "smooth",
+
+                        block:
+                            "start"
+                    });
+
+
+                    setActiveSection(
+                        index
+                    );
+
+                }
+            );
+
+        }
+    );
+
+
+    /* =====================================================
+       SECTION OBSERVER
     ====================================================== */
 
     if (
@@ -839,6 +924,11 @@
 
                             }
 
+
+                            /*
+                             * Включаем появление
+                             * секции.
+                             */
 
                             entry.target.classList.add(
                                 "section-visible"
@@ -891,8 +981,9 @@
                     threshold: [
                         0.35,
                         0.55,
-                        0.7
+                        0.70
                     ]
+
                 }
 
             );
@@ -1001,5 +1092,6 @@
         );
 
     }
+
 
 })();
